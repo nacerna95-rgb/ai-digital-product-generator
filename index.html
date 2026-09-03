@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Digital Product Generator</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e1b4b);
+  color: white;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 35px 20px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  font-size: 45px;
+}
+
+h1 {
+  font-size: 32px;
+  margin: 10px 0;
+}
+
+.subtitle {
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input, select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 18px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: #8b5cf6;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.result {
+  display: none;
+}
+
+.result h2 {
+  color: #c4b5fd;
+}
+
+.item {
+  background: rgba(0,0,0,0.2);
+  padding: 15px;
+  border-radius: 12px;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.price {
+  font-size: 28px;
+  font-weight: bold;
+  color: #86efac;
+}
+
+.footer {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 13px;
+  margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="logo">🚀</div>
+    <h1>AI Digital Product Generator</h1>
+    <p class="subtitle">
+      Generate digital product ideas, names, pricing and marketing ideas in seconds.
+    </p>
+  </div>
+
+  <div class="card">
+
+    <label>What is your niche?</label>
+
+    <input
+      id="niche"
+      type="text"
+      placeholder="Example: TikTok, Fitness, AI, Marketing..."
+    >
+
+    <label>Choose your product type</label>
+
+    <select id="type">
+      <option value="ebook">E-book</option>
+      <option value="template">Template Pack</option>
+      <option value="checklist">Checklist</option>
+      <option value="prompts">AI Prompt Pack</option>
+      <option value="course">Mini Course</option>
+    </select>
+
+    <button onclick="generateProduct()">
+      ✨ Generate My Product
+    </button>
+
+  </div>
+
+  <div class="card result" id="result">
+
+    <h2>🎯 Your Product Idea</h2>
+
+    <div class="item">
+      <strong>Product Name:</strong>
+      <div id="productName"></div>
+    </div>
+
+    <div class="item">
+      <strong>Description:</strong>
+      <div id="description"></div>
+    </div>
+
+    <div class="item">
+      <strong>What it includes:</strong>
+      <div id="includes"></div>
+    </div>
+
+    <div class="item">
+      <strong>Suggested Price:</strong>
+      <div class="price" id="price"></div>
+    </div>
+
+    <div class="item">
+      <strong>Marketing Ideas:</strong>
+      <div id="marketing"></div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Free tool • Built for creators
+  </div>
+
+</div>
+
+<script>
+
+function generateProduct() {
+
+  const nicheInput = document.getElementById("niche").value.trim();
+  const type = document.getElementById("type").value;
+
+  if (!nicheInput) {
+    alert("Please enter your niche first.");
+    return;
+  }
+
+  const niche = nicheInput;
+
+  const data = {
+
+    ebook: {
+      name: `The Ultimate ${niche} Starter Guide`,
+      description: `A beginner-friendly e-book that teaches people how to get started with ${niche} step by step.`,
+      includes: "Beginner guide • Step-by-step lessons • Practical examples • Action plan",
+      price: "$9 - $19",
+      marketing: "Create short videos such as: '3 mistakes beginners make in " + niche + "' and 'How to start " + niche + " from zero'."
+    },
+
+    template: {
+      name: `${niche} Creator Template Pack`,
+      description: `A collection of ready-to-use templates designed to save creators time when working on ${niche}.`,
+      includes: "10+ templates • Easy customization • Instructions • Bonus ideas",
+      price: "$7 - $15",
+      marketing: "Show a before/after video demonstrating how the templates save time."
+    },
+
+    checklist: {
+      name: `${niche} Success Checklist`,
+      description: `A simple checklist helping beginners organize their first steps in ${niche}.`,
+      includes: "Step-by-step checklist • Beginner tasks • Progress tracker • Bonus tips",
+      price: "$3 - $9",
+      marketing: "Post a video showing the first 5 items from the checklist and invite viewers to get the complete version."
+    },
+
+    prompts: {
+      name: `${niche} AI Prompt Power Pack`,
+      description: `A collection of powerful AI prompts designed to help creators produce better results in ${niche}.`,
+      includes: "50+ prompts • Copy-and-paste prompts • Examples • Bonus prompts",
+      price: "$5 - $19",
+      marketing: "Publish free prompts on TikTok, Instagram and YouTube Shorts, then offer the complete pack."
+    },
+
+    course: {
+      name: `${niche} Beginner Mini Course`,
+      description: `A short practical course that helps beginners learn the fundamentals of ${niche}.`,
+      includes: "5 lessons • Exercises • Action plan • Resources",
+      price: "$15 - $39",
+      marketing: "Give away one free lesson and promote the complete mini course."
+    }
+
+  };
+
+  const product = data[type];
+
+  document.getElementById("productName").innerText = product.name;
+  document.getElementById("description").innerText = product.description;
+  document.getElementById("includes").innerText = product.includes;
+  document.getElementById("price").innerText = product.price;
+  document.getElementById("marketing").innerText = product.marketing;
+
+  document.getElementById("result").style.display = "block";
+
+  window.scrollTo({
+    top: document.getElementById("result").offsetTop,
+    behavior: "smooth"
+  });
+}
+
+</script>
+
+</body>
+</html>
