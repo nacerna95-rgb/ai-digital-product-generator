@@ -22,7 +22,6 @@ body {
 }
 
 .container {
-  width: 100%;
   max-width: 850px;
   margin: auto;
   padding: 30px 18px 50px;
@@ -49,13 +48,13 @@ h1 {
   margin: auto;
 }
 
-.card {
+.card,
+.product {
   background: rgba(255,255,255,0.07);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 22px;
   padding: 24px;
   margin-bottom: 22px;
-  backdrop-filter: blur(12px);
 }
 
 label {
@@ -77,24 +76,20 @@ select {
 }
 
 button {
-  width: 100%;
-  padding: 16px;
   border: 0;
-  border-radius: 13px;
-  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  border-radius: 12px;
+  padding: 13px 16px;
   color: white;
-  font-size: 17px;
   font-weight: bold;
   cursor: pointer;
+  font-size: 15px;
 }
 
-button:hover {
-  opacity: 0.9;
-}
-
-.small-btn {
-  margin-top: 12px;
-  background: #334155;
+.generate {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  font-size: 17px;
 }
 
 .results {
@@ -107,16 +102,22 @@ button:hover {
 }
 
 .product {
-  background: rgba(15,23,42,0.85);
+  background: rgba(15,23,42,0.9);
   border: 1px solid #334155;
-  border-radius: 18px;
-  padding: 20px;
-  margin-bottom: 18px;
 }
 
 .product h2 {
   color: #c4b5fd;
-  margin-top: 0;
+}
+
+.badge {
+  display: inline-block;
+  background: #312e81;
+  color: #ddd6fe;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-bottom: 10px;
 }
 
 .section {
@@ -146,6 +147,29 @@ li {
   margin: 7px 0;
 }
 
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.copy-btn {
+  background: #2563eb;
+  flex: 1;
+}
+
+.download-btn {
+  background: #16a34a;
+  flex: 1;
+}
+
+.download-all {
+  width: 100%;
+  background: #9333ea;
+  margin-bottom: 25px;
+  padding: 16px;
+}
+
 .footer {
   text-align: center;
   color: #64748b;
@@ -153,14 +177,19 @@ li {
   margin-top: 35px;
 }
 
-.badge {
-  display: inline-block;
-  background: #312e81;
-  color: #ddd6fe;
-  padding: 6px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  margin-bottom: 10px;
+@media (max-width: 600px) {
+  h1 {
+    font-size: 27px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .copy-btn,
+  .download-btn {
+    width: 100%;
+  }
 }
 </style>
 </head>
@@ -170,24 +199,19 @@ li {
 <div class="container">
 
   <div class="hero">
-
     <div class="logo">🚀</div>
 
     <h1>AI Digital Product Generator</h1>
 
     <p class="subtitle">
-      Discover profitable digital product ideas for your niche.
-      Get product names, descriptions, pricing, content ideas and TikTok marketing ideas.
+      Generate digital product ideas, descriptions, prices and marketing ideas in seconds.
     </p>
-
   </div>
 
 
   <div class="card">
 
-    <label for="niche">
-      🎯 Enter your niche
-    </label>
+    <label for="niche">🎯 Enter your niche</label>
 
     <input
       id="niche"
@@ -195,37 +219,17 @@ li {
       placeholder="Example: TikTok, Fitness, AI, Cooking..."
     >
 
-
-    <label for="type">
-      📦 Choose a product type
-    </label>
+    <label for="type">📦 Choose a product type</label>
 
     <select id="type">
-
-      <option value="ebook">
-        E-book
-      </option>
-
-      <option value="template">
-        Template Pack
-      </option>
-
-      <option value="checklist">
-        Checklist
-      </option>
-
-      <option value="prompts">
-        AI Prompt Pack
-      </option>
-
-      <option value="course">
-        Mini Course
-      </option>
-
+      <option value="ebook">E-book</option>
+      <option value="template">Template Pack</option>
+      <option value="checklist">Checklist</option>
+      <option value="prompts">AI Prompt Pack</option>
+      <option value="course">Mini Course</option>
     </select>
 
-
-    <button onclick="generateProducts()">
+    <button class="generate" onclick="generateProducts()">
       ✨ Generate 5 Product Ideas
     </button>
 
@@ -240,15 +244,17 @@ li {
         AI Product Ideas
       </span>
 
-      <h2>
-        Your Product Opportunities 🚀
-      </h2>
+      <h2>Your Product Opportunities 🚀</h2>
 
       <p class="subtitle">
-        Here are 5 ideas you can develop and sell.
+        Choose an idea and start building your digital product.
       </p>
 
     </div>
+
+    <button class="download-all" onclick="downloadAll()">
+      📥 Download All 5 Ideas
+    </button>
 
     <div id="productList"></div>
 
@@ -266,13 +272,19 @@ li {
 
 <script>
 
+let generatedProducts = [];
+
+
 function generateProducts() {
 
-  const niche =
-    document.getElementById("niche").value.trim();
+  const niche = document
+    .getElementById("niche")
+    .value
+    .trim();
 
-  const type =
-    document.getElementById("type").value;
+  const type = document
+    .getElementById("type")
+    .value;
 
 
   if (!niche) {
@@ -290,71 +302,61 @@ function generateProducts() {
 
       {
         name: `The Ultimate ${niche} Starter Guide`,
-        description:
-          `A beginner-friendly guide that helps people start and improve their skills in ${niche}.`,
-        includes:
-          [
-            "Beginner lessons",
-            "Step-by-step roadmap",
-            "Practical examples",
-            "30-day action plan"
-          ],
+        description: `A beginner-friendly guide that helps people start and improve their skills in ${niche}.`,
+        includes: [
+          "Beginner lessons",
+          "Step-by-step roadmap",
+          "Practical examples",
+          "30-day action plan"
+        ],
         price: "$9 - $19"
       },
 
       {
         name: `${niche} From Zero`,
-        description:
-          `A simple roadmap for complete beginners who want to start ${niche} without feeling overwhelmed.`,
-        includes:
-          [
-            "Getting started guide",
-            "Common mistakes",
-            "Tools and resources",
-            "Beginner checklist"
-          ],
+        description: `A simple roadmap for complete beginners who want to start ${niche} without feeling overwhelmed.`,
+        includes: [
+          "Getting started guide",
+          "Common mistakes",
+          "Tools and resources",
+          "Beginner checklist"
+        ],
         price: "$7 - $15"
       },
 
       {
         name: `${niche} Growth Blueprint`,
-        description:
-          `A practical blueprint designed to help users move from beginner to consistent progress in ${niche}.`,
-        includes:
-          [
-            "Growth strategy",
-            "Weekly plan",
-            "Progress tracker",
-            "Advanced tips"
-          ],
+        description: `A practical blueprint designed to help users move from beginner to consistent progress in ${niche}.`,
+        includes: [
+          "Growth strategy",
+          "Weekly plan",
+          "Progress tracker",
+          "Advanced tips"
+        ],
         price: "$12 - $25"
       },
 
       {
         name: `${niche} Quick Start Kit`,
-        description:
-          `A compact digital kit containing everything a beginner needs to take the first steps in ${niche}.`,
-        includes:
-          [
-            "Quick-start guide",
-            "Resource list",
-            "Action checklist",
-            "Bonus templates"
-          ],
+        description: `A compact digital kit containing everything a beginner needs to take the first steps in ${niche}.`,
+        includes: [
+          "Quick-start guide",
+          "Resource list",
+          "Action checklist",
+          "Bonus templates"
+        ],
         price: "$5 - $12"
       },
 
       {
         name: `${niche} Success System`,
-        description:
-          `A complete beginner system that organizes the most important steps for learning and applying ${niche}.`,
-        includes:
-          [
-            "Complete roadmap",
-            "Daily tasks",
-            "Strategy guide",
-            "Success checklist"
-          ],
+        description: `A complete beginner system that organizes the most important steps for learning and applying ${niche}.`,
+        includes: [
+          "Complete roadmap",
+          "Daily tasks",
+          "Strategy guide",
+          "Success checklist"
+        ],
         price: "$15 - $29"
       }
 
@@ -365,71 +367,61 @@ function generateProducts() {
 
       {
         name: `${niche} Creator Template Pack`,
-        description:
-          `A collection of ready-to-use templates that saves creators time when working in ${niche}.`,
-        includes:
-          [
-            "10+ templates",
-            "Editable designs",
-            "Instructions",
-            "Bonus ideas"
-          ],
+        description: `A collection of ready-to-use templates that saves creators time when working in ${niche}.`,
+        includes: [
+          "10+ templates",
+          "Editable designs",
+          "Instructions",
+          "Bonus ideas"
+        ],
         price: "$7 - $15"
       },
 
       {
         name: `${niche} Content Template Kit`,
-        description:
-          `Ready-to-use templates for creating consistent content around ${niche}.`,
-        includes:
-          [
-            "Content templates",
-            "Post ideas",
-            "Caption templates",
-            "Planning sheet"
-          ],
+        description: `Ready-to-use templates for creating consistent content around ${niche}.`,
+        includes: [
+          "Content templates",
+          "Post ideas",
+          "Caption templates",
+          "Planning sheet"
+        ],
         price: "$9 - $19"
       },
 
       {
         name: `${niche} Business Template Bundle`,
-        description:
-          `Useful templates for people building a small business around ${niche}.`,
-        includes:
-          [
-            "Business templates",
-            "Planning sheets",
-            "Client templates",
-            "Tracking sheets"
-          ],
+        description: `Useful templates for people building a small business around ${niche}.`,
+        includes: [
+          "Business templates",
+          "Planning sheets",
+          "Client templates",
+          "Tracking sheets"
+        ],
         price: "$12 - $25"
       },
 
       {
         name: `${niche} Social Media Kit`,
-        description:
-          `A practical collection of social media templates for creators in ${niche}.`,
-        includes:
-          [
-            "Post templates",
-            "Story ideas",
-            "Caption templates",
-            "Content planner"
-          ],
+        description: `A practical collection of social media templates for creators in ${niche}.`,
+        includes: [
+          "Post templates",
+          "Story ideas",
+          "Caption templates",
+          "Content planner"
+        ],
         price: "$7 - $17"
       },
 
       {
         name: `${niche} Productivity Pack`,
-        description:
-          `A collection of templates designed to help users organize their work in ${niche}.`,
-        includes:
-          [
-            "Task planner",
-            "Goal tracker",
-            "Calendar",
-            "Progress tracker"
-          ],
+        description: `A collection of templates designed to help users organize their work in ${niche}.`,
+        includes: [
+          "Task planner",
+          "Goal tracker",
+          "Calendar",
+          "Progress tracker"
+        ],
         price: "$5 - $12"
       }
 
@@ -440,71 +432,61 @@ function generateProducts() {
 
       {
         name: `${niche} Success Checklist`,
-        description:
-          `A simple checklist that guides beginners through the most important steps in ${niche}.`,
-        includes:
-          [
-            "Beginner checklist",
-            "Progress tracker",
-            "Action steps",
-            "Bonus tips"
-          ],
+        description: `A simple checklist that guides beginners through the most important steps in ${niche}.`,
+        includes: [
+          "Beginner checklist",
+          "Progress tracker",
+          "Action steps",
+          "Bonus tips"
+        ],
         price: "$3 - $9"
       },
 
       {
         name: `${niche} 30-Day Challenge`,
-        description:
-          `A 30-day checklist that helps users build consistent habits around ${niche}.`,
-        includes:
-          [
-            "30 daily tasks",
-            "Progress tracker",
-            "Weekly goals",
-            "Motivation tips"
-          ],
+        description: `A 30-day checklist that helps users build consistent habits around ${niche}.`,
+        includes: [
+          "30 daily tasks",
+          "Progress tracker",
+          "Weekly goals",
+          "Motivation tips"
+        ],
         price: "$5 - $12"
       },
 
       {
         name: `${niche} Beginner Roadmap`,
-        description:
-          `A clear roadmap showing beginners exactly what to do first, second and third.`,
-        includes:
-          [
-            "Step-by-step roadmap",
-            "Milestones",
-            "Daily actions",
-            "Completion tracker"
-          ],
+        description: `A clear roadmap showing beginners exactly what to do first, second and third.`,
+        includes: [
+          "Step-by-step roadmap",
+          "Milestones",
+          "Daily actions",
+          "Completion tracker"
+        ],
         price: "$4 - $10"
       },
 
       {
         name: `${niche} Launch Checklist`,
-        description:
-          `A practical checklist for preparing and launching a project related to ${niche}.`,
-        includes:
-          [
-            "Launch tasks",
-            "Preparation list",
-            "Promotion checklist",
-            "Post-launch actions"
-          ],
+        description: `A practical checklist for preparing and launching a project related to ${niche}.`,
+        includes: [
+          "Launch tasks",
+          "Preparation list",
+          "Promotion checklist",
+          "Post-launch actions"
+        ],
         price: "$5 - $12"
       },
 
       {
         name: `${niche} Beginner Action Plan`,
-        description:
-          `A simple action plan that turns learning ${niche} into daily practical tasks.`,
-        includes:
-          [
-            "Daily actions",
-            "Weekly goals",
-            "Tracking sheet",
-            "Final review"
-          ],
+        description: `A simple action plan that turns learning ${niche} into daily practical tasks.`,
+        includes: [
+          "Daily actions",
+          "Weekly goals",
+          "Tracking sheet",
+          "Final review"
+        ],
         price: "$3 - $9"
       }
 
@@ -515,71 +497,61 @@ function generateProducts() {
 
       {
         name: `${niche} AI Prompt Power Pack`,
-        description:
-          `A collection of copy-and-paste AI prompts designed specifically for ${niche}.`,
-        includes:
-          [
-            "50+ AI prompts",
-            "Prompt examples",
-            "Copy-and-paste templates",
-            "Bonus prompts"
-          ],
+        description: `A collection of copy-and-paste AI prompts designed specifically for ${niche}.`,
+        includes: [
+          "50+ AI prompts",
+          "Prompt examples",
+          "Copy-and-paste templates",
+          "Bonus prompts"
+        ],
         price: "$5 - $19"
       },
 
       {
         name: `${niche} Content AI Prompts`,
-        description:
-          `AI prompts that help creators generate content ideas and marketing material for ${niche}.`,
-        includes:
-          [
-            "Content prompts",
-            "Video prompts",
-            "Caption prompts",
-            "Hook prompts"
-          ],
+        description: `AI prompts that help creators generate content ideas and marketing material for ${niche}.`,
+        includes: [
+          "Content prompts",
+          "Video prompts",
+          "Caption prompts",
+          "Hook prompts"
+        ],
         price: "$7 - $17"
       },
 
       {
         name: `${niche} Business Prompt Kit`,
-        description:
-          `AI prompts designed to help small businesses save time and generate ideas in ${niche}.`,
-        includes:
-          [
-            "Business prompts",
-            "Marketing prompts",
-            "Customer prompts",
-            "Strategy prompts"
-          ],
+        description: `AI prompts designed to help small businesses save time and generate ideas in ${niche}.`,
+        includes: [
+          "Business prompts",
+          "Marketing prompts",
+          "Customer prompts",
+          "Strategy prompts"
+        ],
         price: "$9 - $19"
       },
 
       {
         name: `${niche} TikTok Prompt Pack`,
-        description:
-          `AI prompts for generating TikTok content specifically around ${niche}.`,
-        includes:
-          [
-            "Video ideas",
-            "Hooks",
-            "Scripts",
-            "Captions"
-          ],
+        description: `AI prompts for generating TikTok content specifically around ${niche}.`,
+        includes: [
+          "Video ideas",
+          "Hooks",
+          "Scripts",
+          "Captions"
+        ],
         price: "$5 - $15"
       },
 
       {
         name: `${niche} Creator AI Toolkit`,
-        description:
-          `A complete collection of AI prompts designed to help creators work faster.`,
-        includes:
-          [
-            "100+ prompts",
-            "Content prompts",
-            "Marketing prompts",
-            "Product prompts"
-          ],
+        description: `A complete collection of AI prompts designed to help creators work faster.`,
+        includes: [
+          "100+ prompts",
+          "Content prompts",
+          "Marketing prompts",
+          "Product prompts"
+        ],
         price: "$12 - $29"
       }
 
@@ -590,71 +562,61 @@ function generateProducts() {
 
       {
         name: `${niche} Beginner Mini Course`,
-        description:
-          `A short practical course teaching the fundamentals of ${niche}.`,
-        includes:
-          [
-            "5 lessons",
-            "Exercises",
-            "Action plan",
-            "Resources"
-          ],
+        description: `A short practical course teaching the fundamentals of ${niche}.`,
+        includes: [
+          "5 lessons",
+          "Exercises",
+          "Action plan",
+          "Resources"
+        ],
         price: "$15 - $39"
       },
 
       {
         name: `${niche} From Zero Course`,
-        description:
-          `A beginner course designed to take someone from zero knowledge to their first practical result.`,
-        includes:
-          [
-            "Beginner lessons",
-            "Practical exercises",
-            "Roadmap",
-            "Bonus resources"
-          ],
+        description: `A beginner course designed to take someone from zero knowledge to their first practical result.`,
+        includes: [
+          "Beginner lessons",
+          "Practical exercises",
+          "Roadmap",
+          "Bonus resources"
+        ],
         price: "$19 - $49"
       },
 
       {
         name: `${niche} Growth Course`,
-        description:
-          `A practical course focused on improving skills and results in ${niche}.`,
-        includes:
-          [
-            "Advanced lessons",
-            "Growth strategies",
-            "Exercises",
-            "Progress plan"
-          ],
+        description: `A practical course focused on improving skills and results in ${niche}.`,
+        includes: [
+          "Advanced lessons",
+          "Growth strategies",
+          "Exercises",
+          "Progress plan"
+        ],
         price: "$25 - $59"
       },
 
       {
         name: `${niche} Quick Start Course`,
-        description:
-          `A short course focused on helping beginners take action quickly.`,
-        includes:
-          [
-            "3-5 lessons",
-            "Quick exercises",
-            "Action checklist",
-            "Bonus guide"
-          ],
+        description: `A short course focused on helping beginners take action quickly.`,
+        includes: [
+          "3-5 lessons",
+          "Quick exercises",
+          "Action checklist",
+          "Bonus guide"
+        ],
         price: "$15 - $35"
       },
 
       {
         name: `${niche} Success Blueprint Course`,
-        description:
-          `A structured course showing users a complete system for learning and applying ${niche}.`,
-        includes:
-          [
-            "Complete roadmap",
-            "Video lessons",
-            "Worksheets",
-            "Action plan"
-          ],
+        description: `A structured course showing users a complete system for learning and applying ${niche}.`,
+        includes: [
+          "Complete roadmap",
+          "Video lessons",
+          "Worksheets",
+          "Action plan"
+        ],
         price: "$29 - $79"
       }
 
@@ -663,28 +625,24 @@ function generateProducts() {
   };
 
 
-  const products = templates[type];
+  generatedProducts = templates[type];
 
   let html = "";
 
 
-  products.forEach((product, index) => {
-
-    const number = index + 1;
-
+  generatedProducts.forEach((product, index) => {
 
     html += `
 
-      <div class="product">
+      <div class="product" id="product-${index}">
 
         <span class="badge">
-          Product Idea #${number}
+          Product Idea #${index + 1}
         </span>
 
         <h2>
           ${product.name}
         </h2>
-
 
         <div class="section">
 
@@ -732,15 +690,15 @@ function generateProducts() {
           <ul>
 
             <li>
-              “3 mistakes beginners make in ${niche}”
+              3 mistakes beginners make in ${niche}
             </li>
 
             <li>
-              “How I started ${niche} from zero”
+              How I started ${niche} from zero
             </li>
 
             <li>
-              “5 things I wish I knew about ${niche}”
+              5 things I wish I knew about ${niche}
             </li>
 
           </ul>
@@ -770,6 +728,23 @@ function generateProducts() {
 
         </div>
 
+
+        <div class="actions">
+
+          <button
+            class="copy-btn"
+            onclick="copyProduct(${index})">
+            📋 Copy
+          </button>
+
+          <button
+            class="download-btn"
+            onclick="downloadProduct(${index})">
+            📥 Download
+          </button>
+
+        </div>
+
       </div>
 
     `;
@@ -783,13 +758,148 @@ function generateProducts() {
 
 
   window.scrollTo({
-
-    top:
-      document.getElementById("results").offsetTop,
-
+    top: document.getElementById("results").offsetTop,
     behavior: "smooth"
+  });
+
+}
+
+
+function getProductText(index) {
+
+  const product = generatedProducts[index];
+
+  return `
+${product.name}
+
+DESCRIPTION:
+${product.description}
+
+WHAT IT INCLUDES:
+${product.includes.join("\n- ")}
+
+SUGGESTED PRICE:
+${product.price}
+
+TIKTOK MARKETING IDEAS:
+- 3 mistakes beginners make
+- How I started from zero
+- 5 things I wish I knew
+
+AI PROMPTS:
+- Give me 10 beginner tips.
+- Create a 30-second TikTok script.
+- Give me 10 digital product ideas.
+`;
+
+}
+
+
+function copyProduct(index) {
+
+  const text = getProductText(index);
+
+  navigator.clipboard.writeText(text)
+    .then(() => {
+
+      alert("✅ Product idea copied!");
+
+    })
+    .catch(() => {
+
+      alert("Please copy the text manually.");
+
+    });
+
+}
+
+
+function downloadProduct(index) {
+
+  const text = getProductText(index);
+
+  const blob = new Blob(
+    [text],
+    { type: "text/plain" }
+  );
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+
+  link.href = url;
+
+  link.download =
+    "digital-product-idea-" + (index + 1) + ".txt";
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  document.body.removeChild(link);
+
+  URL.revokeObjectURL(url);
+
+}
+
+
+function downloadAll() {
+
+  if (generatedProducts.length === 0) {
+
+    alert("Generate product ideas first.");
+
+    return;
+
+  }
+
+
+  let text =
+    "AI DIGITAL PRODUCT GENERATOR\n\n";
+
+
+  generatedProducts.forEach((product, index) => {
+
+    text +=
+`
+==============================
+PRODUCT IDEA #${index + 1}
+==============================
+
+${getProductText(index)}
+
+`;
 
   });
+
+
+  const blob = new Blob(
+    [text],
+    { type: "text/plain" }
+  );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const link =
+    document.createElement("a");
+
+
+  link.href = url;
+
+  link.download =
+    "my-5-digital-product-ideas.txt";
+
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  document.body.removeChild(link);
+
+  URL.revokeObjectURL(url);
 
 }
 
