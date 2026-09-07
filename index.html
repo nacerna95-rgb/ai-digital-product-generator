@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>AI Digital Product Generator</title>
 
 <style>
@@ -13,66 +14,74 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #0f172a, #1e1b4b);
+  background:
+    radial-gradient(circle at top, #312e81 0%, transparent 35%),
+    linear-gradient(135deg, #020617, #111827);
   color: white;
   min-height: 100vh;
 }
 
 .container {
-  max-width: 700px;
+  width: 100%;
+  max-width: 850px;
   margin: auto;
-  padding: 35px 20px;
+  padding: 30px 18px 50px;
 }
 
 .hero {
   text-align: center;
-  margin-bottom: 30px;
+  padding: 20px 0 30px;
 }
 
 .logo {
-  font-size: 45px;
+  font-size: 55px;
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 34px;
   margin: 10px 0;
 }
 
 .subtitle {
   color: #cbd5e1;
-  line-height: 1.6;
+  line-height: 1.7;
+  max-width: 650px;
+  margin: auto;
 }
 
 .card {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.07);
   border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 20px;
-  padding: 25px;
-  margin-bottom: 20px;
-  backdrop-filter: blur(10px);
+  border-radius: 22px;
+  padding: 24px;
+  margin-bottom: 22px;
+  backdrop-filter: blur(12px);
 }
 
 label {
   display: block;
-  margin-bottom: 8px;
   font-weight: bold;
+  margin-bottom: 8px;
 }
 
-input, select {
+input,
+select {
   width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  border: none;
+  padding: 15px;
   margin-bottom: 18px;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  background: #0f172a;
+  color: white;
   font-size: 16px;
 }
 
 button {
   width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 12px;
-  background: #8b5cf6;
+  padding: 16px;
+  border: 0;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
   color: white;
   font-size: 17px;
   font-weight: bold;
@@ -83,33 +92,75 @@ button:hover {
   opacity: 0.9;
 }
 
-.result {
+.small-btn {
+  margin-top: 12px;
+  background: #334155;
+}
+
+.results {
   display: none;
 }
 
-.result h2 {
-  color: #c4b5fd;
+.results-title {
+  text-align: center;
+  margin-bottom: 25px;
 }
 
-.item {
-  background: rgba(0,0,0,0.2);
-  padding: 15px;
-  border-radius: 12px;
-  margin: 10px 0;
-  line-height: 1.6;
+.product {
+  background: rgba(15,23,42,0.85);
+  border: 1px solid #334155;
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.product h2 {
+  color: #c4b5fd;
+  margin-top: 0;
+}
+
+.section {
+  margin-top: 15px;
+  line-height: 1.7;
+}
+
+.section strong {
+  color: #a5b4fc;
 }
 
 .price {
-  font-size: 28px;
+  display: inline-block;
+  margin-top: 8px;
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: #14532d;
+  color: #bbf7d0;
   font-weight: bold;
-  color: #86efac;
+}
+
+ul {
+  padding-left: 22px;
+}
+
+li {
+  margin: 7px 0;
 }
 
 .footer {
   text-align: center;
-  color: #94a3b8;
+  color: #64748b;
   font-size: 13px;
-  margin-top: 30px;
+  margin-top: 35px;
+}
+
+.badge {
+  display: inline-block;
+  background: #312e81;
+  color: #ddd6fe;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-bottom: 10px;
 }
 </style>
 </head>
@@ -119,148 +170,627 @@ button:hover {
 <div class="container">
 
   <div class="hero">
+
     <div class="logo">🚀</div>
+
     <h1>AI Digital Product Generator</h1>
+
     <p class="subtitle">
-      Generate digital product ideas, names, pricing and marketing ideas in seconds.
+      Discover profitable digital product ideas for your niche.
+      Get product names, descriptions, pricing, content ideas and TikTok marketing ideas.
     </p>
+
   </div>
+
 
   <div class="card">
 
-    <label>What is your niche?</label>
+    <label for="niche">
+      🎯 Enter your niche
+    </label>
 
     <input
       id="niche"
       type="text"
-      placeholder="Example: TikTok, Fitness, AI, Marketing..."
+      placeholder="Example: TikTok, Fitness, AI, Cooking..."
     >
 
-    <label>Choose your product type</label>
+
+    <label for="type">
+      📦 Choose a product type
+    </label>
 
     <select id="type">
-      <option value="ebook">E-book</option>
-      <option value="template">Template Pack</option>
-      <option value="checklist">Checklist</option>
-      <option value="prompts">AI Prompt Pack</option>
-      <option value="course">Mini Course</option>
+
+      <option value="ebook">
+        E-book
+      </option>
+
+      <option value="template">
+        Template Pack
+      </option>
+
+      <option value="checklist">
+        Checklist
+      </option>
+
+      <option value="prompts">
+        AI Prompt Pack
+      </option>
+
+      <option value="course">
+        Mini Course
+      </option>
+
     </select>
 
-    <button onclick="generateProduct()">
-      ✨ Generate My Product
+
+    <button onclick="generateProducts()">
+      ✨ Generate 5 Product Ideas
     </button>
 
   </div>
 
-  <div class="card result" id="result">
 
-    <h2>🎯 Your Product Idea</h2>
+  <div class="results" id="results">
 
-    <div class="item">
-      <strong>Product Name:</strong>
-      <div id="productName"></div>
+    <div class="results-title">
+
+      <span class="badge">
+        AI Product Ideas
+      </span>
+
+      <h2>
+        Your Product Opportunities 🚀
+      </h2>
+
+      <p class="subtitle">
+        Here are 5 ideas you can develop and sell.
+      </p>
+
     </div>
 
-    <div class="item">
-      <strong>Description:</strong>
-      <div id="description"></div>
-    </div>
-
-    <div class="item">
-      <strong>What it includes:</strong>
-      <div id="includes"></div>
-    </div>
-
-    <div class="item">
-      <strong>Suggested Price:</strong>
-      <div class="price" id="price"></div>
-    </div>
-
-    <div class="item">
-      <strong>Marketing Ideas:</strong>
-      <div id="marketing"></div>
-    </div>
+    <div id="productList"></div>
 
   </div>
 
+
   <div class="footer">
-    Free tool • Built for creators
+    Free Digital Product Idea Generator
+    <br>
+    Built with HTML, CSS & JavaScript
   </div>
 
 </div>
 
+
 <script>
 
-function generateProduct() {
+function generateProducts() {
 
-  const nicheInput = document.getElementById("niche").value.trim();
-  const type = document.getElementById("type").value;
+  const niche =
+    document.getElementById("niche").value.trim();
 
-  if (!nicheInput) {
+  const type =
+    document.getElementById("type").value;
+
+
+  if (!niche) {
+
     alert("Please enter your niche first.");
+
     return;
+
   }
 
-  const niche = nicheInput;
 
-  const data = {
+  const templates = {
 
-    ebook: {
-      name: `The Ultimate ${niche} Starter Guide`,
-      description: `A beginner-friendly e-book that teaches people how to get started with ${niche} step by step.`,
-      includes: "Beginner guide • Step-by-step lessons • Practical examples • Action plan",
-      price: "$9 - $19",
-      marketing: "Create short videos such as: '3 mistakes beginners make in " + niche + "' and 'How to start " + niche + " from zero'."
-    },
+    ebook: [
 
-    template: {
-      name: `${niche} Creator Template Pack`,
-      description: `A collection of ready-to-use templates designed to save creators time when working on ${niche}.`,
-      includes: "10+ templates • Easy customization • Instructions • Bonus ideas",
-      price: "$7 - $15",
-      marketing: "Show a before/after video demonstrating how the templates save time."
-    },
+      {
+        name: `The Ultimate ${niche} Starter Guide`,
+        description:
+          `A beginner-friendly guide that helps people start and improve their skills in ${niche}.`,
+        includes:
+          [
+            "Beginner lessons",
+            "Step-by-step roadmap",
+            "Practical examples",
+            "30-day action plan"
+          ],
+        price: "$9 - $19"
+      },
 
-    checklist: {
-      name: `${niche} Success Checklist`,
-      description: `A simple checklist helping beginners organize their first steps in ${niche}.`,
-      includes: "Step-by-step checklist • Beginner tasks • Progress tracker • Bonus tips",
-      price: "$3 - $9",
-      marketing: "Post a video showing the first 5 items from the checklist and invite viewers to get the complete version."
-    },
+      {
+        name: `${niche} From Zero`,
+        description:
+          `A simple roadmap for complete beginners who want to start ${niche} without feeling overwhelmed.`,
+        includes:
+          [
+            "Getting started guide",
+            "Common mistakes",
+            "Tools and resources",
+            "Beginner checklist"
+          ],
+        price: "$7 - $15"
+      },
 
-    prompts: {
-      name: `${niche} AI Prompt Power Pack`,
-      description: `A collection of powerful AI prompts designed to help creators produce better results in ${niche}.`,
-      includes: "50+ prompts • Copy-and-paste prompts • Examples • Bonus prompts",
-      price: "$5 - $19",
-      marketing: "Publish free prompts on TikTok, Instagram and YouTube Shorts, then offer the complete pack."
-    },
+      {
+        name: `${niche} Growth Blueprint`,
+        description:
+          `A practical blueprint designed to help users move from beginner to consistent progress in ${niche}.`,
+        includes:
+          [
+            "Growth strategy",
+            "Weekly plan",
+            "Progress tracker",
+            "Advanced tips"
+          ],
+        price: "$12 - $25"
+      },
 
-    course: {
-      name: `${niche} Beginner Mini Course`,
-      description: `A short practical course that helps beginners learn the fundamentals of ${niche}.`,
-      includes: "5 lessons • Exercises • Action plan • Resources",
-      price: "$15 - $39",
-      marketing: "Give away one free lesson and promote the complete mini course."
-    }
+      {
+        name: `${niche} Quick Start Kit`,
+        description:
+          `A compact digital kit containing everything a beginner needs to take the first steps in ${niche}.`,
+        includes:
+          [
+            "Quick-start guide",
+            "Resource list",
+            "Action checklist",
+            "Bonus templates"
+          ],
+        price: "$5 - $12"
+      },
+
+      {
+        name: `${niche} Success System`,
+        description:
+          `A complete beginner system that organizes the most important steps for learning and applying ${niche}.`,
+        includes:
+          [
+            "Complete roadmap",
+            "Daily tasks",
+            "Strategy guide",
+            "Success checklist"
+          ],
+        price: "$15 - $29"
+      }
+
+    ],
+
+
+    template: [
+
+      {
+        name: `${niche} Creator Template Pack`,
+        description:
+          `A collection of ready-to-use templates that saves creators time when working in ${niche}.`,
+        includes:
+          [
+            "10+ templates",
+            "Editable designs",
+            "Instructions",
+            "Bonus ideas"
+          ],
+        price: "$7 - $15"
+      },
+
+      {
+        name: `${niche} Content Template Kit`,
+        description:
+          `Ready-to-use templates for creating consistent content around ${niche}.`,
+        includes:
+          [
+            "Content templates",
+            "Post ideas",
+            "Caption templates",
+            "Planning sheet"
+          ],
+        price: "$9 - $19"
+      },
+
+      {
+        name: `${niche} Business Template Bundle`,
+        description:
+          `Useful templates for people building a small business around ${niche}.`,
+        includes:
+          [
+            "Business templates",
+            "Planning sheets",
+            "Client templates",
+            "Tracking sheets"
+          ],
+        price: "$12 - $25"
+      },
+
+      {
+        name: `${niche} Social Media Kit`,
+        description:
+          `A practical collection of social media templates for creators in ${niche}.`,
+        includes:
+          [
+            "Post templates",
+            "Story ideas",
+            "Caption templates",
+            "Content planner"
+          ],
+        price: "$7 - $17"
+      },
+
+      {
+        name: `${niche} Productivity Pack`,
+        description:
+          `A collection of templates designed to help users organize their work in ${niche}.`,
+        includes:
+          [
+            "Task planner",
+            "Goal tracker",
+            "Calendar",
+            "Progress tracker"
+          ],
+        price: "$5 - $12"
+      }
+
+    ],
+
+
+    checklist: [
+
+      {
+        name: `${niche} Success Checklist`,
+        description:
+          `A simple checklist that guides beginners through the most important steps in ${niche}.`,
+        includes:
+          [
+            "Beginner checklist",
+            "Progress tracker",
+            "Action steps",
+            "Bonus tips"
+          ],
+        price: "$3 - $9"
+      },
+
+      {
+        name: `${niche} 30-Day Challenge`,
+        description:
+          `A 30-day checklist that helps users build consistent habits around ${niche}.`,
+        includes:
+          [
+            "30 daily tasks",
+            "Progress tracker",
+            "Weekly goals",
+            "Motivation tips"
+          ],
+        price: "$5 - $12"
+      },
+
+      {
+        name: `${niche} Beginner Roadmap`,
+        description:
+          `A clear roadmap showing beginners exactly what to do first, second and third.`,
+        includes:
+          [
+            "Step-by-step roadmap",
+            "Milestones",
+            "Daily actions",
+            "Completion tracker"
+          ],
+        price: "$4 - $10"
+      },
+
+      {
+        name: `${niche} Launch Checklist`,
+        description:
+          `A practical checklist for preparing and launching a project related to ${niche}.`,
+        includes:
+          [
+            "Launch tasks",
+            "Preparation list",
+            "Promotion checklist",
+            "Post-launch actions"
+          ],
+        price: "$5 - $12"
+      },
+
+      {
+        name: `${niche} Beginner Action Plan`,
+        description:
+          `A simple action plan that turns learning ${niche} into daily practical tasks.`,
+        includes:
+          [
+            "Daily actions",
+            "Weekly goals",
+            "Tracking sheet",
+            "Final review"
+          ],
+        price: "$3 - $9"
+      }
+
+    ],
+
+
+    prompts: [
+
+      {
+        name: `${niche} AI Prompt Power Pack`,
+        description:
+          `A collection of copy-and-paste AI prompts designed specifically for ${niche}.`,
+        includes:
+          [
+            "50+ AI prompts",
+            "Prompt examples",
+            "Copy-and-paste templates",
+            "Bonus prompts"
+          ],
+        price: "$5 - $19"
+      },
+
+      {
+        name: `${niche} Content AI Prompts`,
+        description:
+          `AI prompts that help creators generate content ideas and marketing material for ${niche}.`,
+        includes:
+          [
+            "Content prompts",
+            "Video prompts",
+            "Caption prompts",
+            "Hook prompts"
+          ],
+        price: "$7 - $17"
+      },
+
+      {
+        name: `${niche} Business Prompt Kit`,
+        description:
+          `AI prompts designed to help small businesses save time and generate ideas in ${niche}.`,
+        includes:
+          [
+            "Business prompts",
+            "Marketing prompts",
+            "Customer prompts",
+            "Strategy prompts"
+          ],
+        price: "$9 - $19"
+      },
+
+      {
+        name: `${niche} TikTok Prompt Pack`,
+        description:
+          `AI prompts for generating TikTok content specifically around ${niche}.`,
+        includes:
+          [
+            "Video ideas",
+            "Hooks",
+            "Scripts",
+            "Captions"
+          ],
+        price: "$5 - $15"
+      },
+
+      {
+        name: `${niche} Creator AI Toolkit`,
+        description:
+          `A complete collection of AI prompts designed to help creators work faster.`,
+        includes:
+          [
+            "100+ prompts",
+            "Content prompts",
+            "Marketing prompts",
+            "Product prompts"
+          ],
+        price: "$12 - $29"
+      }
+
+    ],
+
+
+    course: [
+
+      {
+        name: `${niche} Beginner Mini Course`,
+        description:
+          `A short practical course teaching the fundamentals of ${niche}.`,
+        includes:
+          [
+            "5 lessons",
+            "Exercises",
+            "Action plan",
+            "Resources"
+          ],
+        price: "$15 - $39"
+      },
+
+      {
+        name: `${niche} From Zero Course`,
+        description:
+          `A beginner course designed to take someone from zero knowledge to their first practical result.`,
+        includes:
+          [
+            "Beginner lessons",
+            "Practical exercises",
+            "Roadmap",
+            "Bonus resources"
+          ],
+        price: "$19 - $49"
+      },
+
+      {
+        name: `${niche} Growth Course`,
+        description:
+          `A practical course focused on improving skills and results in ${niche}.`,
+        includes:
+          [
+            "Advanced lessons",
+            "Growth strategies",
+            "Exercises",
+            "Progress plan"
+          ],
+        price: "$25 - $59"
+      },
+
+      {
+        name: `${niche} Quick Start Course`,
+        description:
+          `A short course focused on helping beginners take action quickly.`,
+        includes:
+          [
+            "3-5 lessons",
+            "Quick exercises",
+            "Action checklist",
+            "Bonus guide"
+          ],
+        price: "$15 - $35"
+      },
+
+      {
+        name: `${niche} Success Blueprint Course`,
+        description:
+          `A structured course showing users a complete system for learning and applying ${niche}.`,
+        includes:
+          [
+            "Complete roadmap",
+            "Video lessons",
+            "Worksheets",
+            "Action plan"
+          ],
+        price: "$29 - $79"
+      }
+
+    ]
 
   };
 
-  const product = data[type];
 
-  document.getElementById("productName").innerText = product.name;
-  document.getElementById("description").innerText = product.description;
-  document.getElementById("includes").innerText = product.includes;
-  document.getElementById("price").innerText = product.price;
-  document.getElementById("marketing").innerText = product.marketing;
+  const products = templates[type];
 
-  document.getElementById("result").style.display = "block";
+  let html = "";
+
+
+  products.forEach((product, index) => {
+
+    const number = index + 1;
+
+
+    html += `
+
+      <div class="product">
+
+        <span class="badge">
+          Product Idea #${number}
+        </span>
+
+        <h2>
+          ${product.name}
+        </h2>
+
+
+        <div class="section">
+
+          <strong>📝 Description</strong>
+
+          <p>
+            ${product.description}
+          </p>
+
+        </div>
+
+
+        <div class="section">
+
+          <strong>📦 What it includes</strong>
+
+          <ul>
+
+            ${product.includes
+              .map(item => `<li>${item}</li>`)
+              .join("")}
+
+          </ul>
+
+        </div>
+
+
+        <div class="section">
+
+          <strong>💰 Suggested Price</strong>
+
+          <br>
+
+          <span class="price">
+            ${product.price}
+          </span>
+
+        </div>
+
+
+        <div class="section">
+
+          <strong>📱 TikTok Marketing Ideas</strong>
+
+          <ul>
+
+            <li>
+              “3 mistakes beginners make in ${niche}”
+            </li>
+
+            <li>
+              “How I started ${niche} from zero”
+            </li>
+
+            <li>
+              “5 things I wish I knew about ${niche}”
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div class="section">
+
+          <strong>🤖 AI Prompts</strong>
+
+          <ul>
+
+            <li>
+              Give me 10 beginner tips about ${niche}.
+            </li>
+
+            <li>
+              Create a 30-second TikTok script about ${niche}.
+            </li>
+
+            <li>
+              Give me 10 digital product ideas for ${niche}.
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+
+  document.getElementById("productList").innerHTML = html;
+
+  document.getElementById("results").style.display = "block";
+
 
   window.scrollTo({
-    top: document.getElementById("result").offsetTop,
+
+    top:
+      document.getElementById("results").offsetTop,
+
     behavior: "smooth"
+
   });
+
 }
 
 </script>
