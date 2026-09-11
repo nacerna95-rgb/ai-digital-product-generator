@@ -916,37 +916,98 @@ renderProducts();
    AI REQUEST
 ========================= */
 
-async function callAI(prompt,timeout=60000){
+async function callAI(prompt, timeout = 60000) {
 
-const controller =
-new AbortController();
+    const controller = new AbortController();
 
-const timer =
-setTimeout(
-()=>controller.abort(),
-timeout
-);
+    const timer = setTimeout(
+        () => controller.abort(),
+        timeout
+    );
 
+    try {
 
-try{
+        const response = await fetch(
+            WORKER_URL,
+            {
+                method: "POST",
 
-const response =
-await fetch(
-WORKER_URL,
-{
-method:"POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-headers:{
-"Content-Type":
-"application/json"
-},
+                body: JSON.stringify({
+                    prompt: `
+You are an expert digital-product strategist and practical AI assistant.
 
-body:JSON.stringify({
-prompt:prompt
-}),
+Give answers that are:
 
-signal:controller.signal
+- Direct
+- Objective
+- Practical
+- Useful
+- Beginner-friendly
+- Focused on real value
+- Motivating without unrealistic promises
 
+For ideas and recommendations, prioritize:
+
+1. What it is
+2. Who needs it
+3. Why it has value
+4. How to create or execute it
+5. The easiest first step
+6. A realistic monetization method when relevant
+
+Avoid vague ideas and unnecessary explanations.
+
+Use specific examples and actionable steps.
+
+Never promise guaranteed income.
+
+End important recommendations with a short practical motivation such as:
+
+"Start with one small step today. 🚀"
+
+USER REQUEST:
+${prompt}
+                    `
+                }),
+
+                signal: controller.signal
+            }
+        );
+
+        clearTimeout(timer);
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.error || "AI request failed"
+            );
+        }
+
+        if (!data.result) {
+            throw new Error(
+                "The AI returned an empty response."
+            );
+        }
+
+        return data.result;
+
+    } catch (error) {
+
+        clearTimeout(timer);
+
+        if (error.name === "AbortError") {
+            throw new Error(
+                "The AI response took too long. Please try again."
+            );
+        }
+
+        throw error;
+    }
 }
 );
 
