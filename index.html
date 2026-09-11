@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>AI Digital Product Builder</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+box-sizing:border-box;
+}
 
 body{
 margin:0;
 font-family:Arial,sans-serif;
 background:linear-gradient(135deg,#050816,#111827);
 color:#fff;
-min-height:100vh
+min-height:100vh;
 }
 
 .container{
-width:min(1100px,94%);
+width:min(1050px,94%);
 margin:auto;
-padding:20px 0 50px
+padding:18px 0 40px;
 }
 
 .topbar{
@@ -27,22 +32,16 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 gap:10px;
-flex-wrap:wrap
+flex-wrap:wrap;
 }
 
 .logo{
-font-size:23px;
-font-weight:700
+font-size:21px;
+font-weight:700;
 }
 
 .logo span{
-color:#a78bfa
-}
-
-.nav,.actions{
-display:flex;
-gap:8px;
-flex-wrap:wrap
+color:#a78bfa;
 }
 
 button{
@@ -50,49 +49,60 @@ border:0;
 border-radius:10px;
 padding:11px 15px;
 font-weight:700;
-cursor:pointer
+cursor:pointer;
+}
+
+button:disabled{
+opacity:.6;
+cursor:not-allowed;
 }
 
 .btn{
 background:#8b5cf6;
-color:#fff
+color:#fff;
 }
 
 .btn-success{
 background:#059669;
-color:#fff
+color:#fff;
 }
 
 .btn-secondary{
 background:#1f2937;
 color:#fff;
-border:1px solid #374151
+border:1px solid #374151;
 }
 
 .btn-danger{
 background:#dc2626;
-color:#fff
+color:#fff;
+}
+
+.actions{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
 }
 
 .hero{
 text-align:center;
-padding:35px 10px
+padding:30px 8px;
 }
 
 .hero h1{
-font-size:clamp(30px,6vw,52px);
-margin:0 0 12px
+font-size:clamp(30px,6vw,50px);
+margin:0 0 12px;
 }
 
 .hero h1 span{
-color:#a78bfa
+color:#a78bfa;
 }
 
 .hero p{
-color:#cbd5e1;
+max-width:680px;
+margin:auto;
 line-height:1.7;
-max-width:700px;
-margin:auto
+color:#cbd5e1;
 }
 
 .badges{
@@ -100,66 +110,64 @@ display:flex;
 justify-content:center;
 gap:8px;
 flex-wrap:wrap;
-margin-top:18px
+margin-top:18px;
 }
 
 .badge{
 background:#111827;
 border:1px solid #374151;
-padding:8px 12px;
+padding:7px 11px;
 border-radius:20px;
-color:#d1d5db;
-font-size:13px
+font-size:13px;
+color:#cbd5e1;
 }
 
 .card{
-background:rgba(17,24,39,.9);
+background:rgba(17,24,39,.92);
 border:1px solid #273449;
 border-radius:18px;
-padding:22px;
-margin:0 0 20px;
-box-shadow:0 15px 40px #0003
+padding:20px;
+margin-bottom:18px;
+box-shadow:0 12px 35px #0003;
 }
 
 .form-grid,
-.builder-grid,
-.results{
+.results,
+.builder-grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:15px
+gap:14px;
 }
 
 label{
 display:block;
-margin-bottom:8px;
+margin-bottom:7px;
+font-weight:700;
 color:#d1d5db;
-font-weight:700
 }
 
 input,
-select,
-textarea{
+select{
 width:100%;
 padding:13px;
 border-radius:10px;
 border:1px solid #374151;
 background:#0b1220;
 color:#fff;
-font-size:15px
+font-size:15px;
 }
 
 input:focus,
-select:focus,
-textarea:focus{
+select:focus{
 outline:none;
-border-color:#8b5cf6
+border-color:#8b5cf6;
 }
 
 .main-action{
 width:100%;
-margin-top:18px;
+margin-top:16px;
+padding:14px;
 font-size:16px;
-padding:14px
 }
 
 .product-card,
@@ -168,62 +176,61 @@ padding:14px
 background:#0b1220;
 border:1px solid #263449;
 border-radius:13px;
-padding:16px
+padding:15px;
 }
 
 .product-card h3,
-.saved-info h3{
-color:#c4b5fd
+.info-box h3{
+color:#c4b5fd;
 }
 
 .product-card p,
-.info-box p,
-.saved-info p{
+.info-box p{
 color:#cbd5e1;
-line-height:1.7
+line-height:1.7;
 }
 
 .builder,
 .full-product,
 .saved-section{
-display:none
+display:none;
 }
 
 .empty{
+grid-column:1/-1;
 text-align:center;
+padding:25px;
 color:#94a3b8;
-padding:30px;
-grid-column:1/-1
 }
 
 .full-content{
 background:#080d18;
 border:1px solid #263449;
 border-radius:12px;
-padding:20px;
+padding:18px;
 white-space:pre-wrap;
 line-height:1.8;
 max-height:650px;
-overflow:auto
+overflow:auto;
 }
 
 .saved-list{
 display:grid;
-gap:12px
+gap:10px;
 }
 
 .saved-item{
 display:flex;
 justify-content:space-between;
 align-items:center;
-gap:12px
+gap:10px;
 }
 
 .footer{
 text-align:center;
 color:#64748b;
-margin-top:35px;
-font-size:13px
+font-size:13px;
+margin-top:30px;
 }
 
 .toast{
@@ -236,47 +243,65 @@ border:1px solid #374151;
 padding:13px 20px;
 border-radius:10px;
 opacity:0;
-transition:.3s;
-z-index:99
+transition:.25s;
+z-index:100;
+max-width:90%;
+text-align:center;
 }
 
 .toast.show{
 opacity:1;
-transform:translateX(-50%) translateY(0)
+transform:translateX(-50%) translateY(0);
 }
 
-.filebox{
-margin-top:15px
+.loading{
+display:inline-flex;
+align-items:center;
+gap:8px;
 }
 
-.preview{
-max-width:180px;
-max-height:140px;
-border-radius:10px;
-margin-top:10px;
-display:none
+.spinner{
+width:15px;
+height:15px;
+border:2px solid #ffffff55;
+border-top-color:#fff;
+border-radius:50%;
+animation:spin .7s linear infinite;
+}
+
+@keyframes spin{
+to{
+transform:rotate(360deg);
+}
 }
 
 @media(max-width:700px){
 
 .form-grid,
-.builder-grid,
-.results{
-grid-template-columns:1fr
+.results,
+.builder-grid{
+grid-template-columns:1fr;
 }
 
 .saved-item{
 flex-direction:column;
-align-items:stretch
+align-items:stretch;
+}
+
+.hero{
+padding-top:25px;
 }
 
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div class="container">
+
 
 <header class="topbar">
 
@@ -284,7 +309,7 @@ align-items:stretch
 🚀 <span>AI Digital Product</span> Builder
 </div>
 
-<div class="nav">
+<div class="actions">
 
 <button
 class="btn-secondary"
@@ -296,11 +321,8 @@ id="languageBtn">
 <button
 class="btn-secondary"
 onclick="showSavedProjects()">
-
-📂 <span data-i18n="saved">
-مشاريعي المحفوظة
-</span>
-
+📂
+<span data-i18n="saved">مشاريعي</span>
 </button>
 
 </div>
@@ -318,13 +340,13 @@ onclick="showSavedProjects()">
 </h1>
 
 <p data-i18n="heroText">
-أنشئ أفكار منتجات رقمية، وابنِ منتجًا كاملًا، واكتب خطة تسويق باستخدام الذكاء الاصطناعي.
+أنشئ أفكار منتجات رقمية، ثم حوّل أفضل فكرة إلى منتج كامل وخطة تسويق.
 </p>
 
 <div class="badges">
 
+<div class="badge">🤖 AI</div>
 <div class="badge">📱 Mobile</div>
-<div class="badge">🤖 Real AI</div>
 <div class="badge">💾 Auto Save</div>
 <div class="badge">🌐 Arabic / English</div>
 
@@ -341,7 +363,9 @@ onclick="showSavedProjects()">
 </span>
 </h2>
 
+
 <div class="form-grid">
+
 
 <div>
 
@@ -367,23 +391,23 @@ oninput="autoSave()">
 id="type"
 onchange="autoSave()">
 
-<option value="ebook">
+<option value="E-book">
 📘 E-book
 </option>
 
-<option value="template">
+<option value="Template Pack">
 📦 Template Pack
 </option>
 
-<option value="checklist">
+<option value="Checklist">
 ✅ Checklist
 </option>
 
-<option value="prompts">
+<option value="AI Prompt Pack">
 🤖 AI Prompt Pack
 </option>
 
-<option value="course">
+<option value="Mini Course">
 🎓 Mini Course
 </option>
 
@@ -394,31 +418,12 @@ onchange="autoSave()">
 </div>
 
 
-<div class="filebox">
-
-<label data-i18n="imageLabel">
-صورة اختيارية لإرسالها إلى الذكاء الاصطناعي
-</label>
-
-<input
-id="imageInput"
-type="file"
-accept="image/*"
-onchange="previewImage(event)">
-
-<img
-id="imagePreview"
-class="preview">
-
-</div>
-
-
 <button
+id="generateBtn"
 class="btn main-action"
 onclick="generateProducts()">
 
 ✨
-
 <span data-i18n="generate">
 إنشاء 5 أفكار بالذكاء الاصطناعي
 </span>
@@ -442,13 +447,10 @@ style="display:flex;justify-content:space-between;align-items:center;gap:10px;fl
 <button
 class="btn-secondary"
 onclick="downloadAll()">
-
 📥
-
 <span data-i18n="downloadAll">
 تحميل الكل
 </span>
-
 </button>
 
 </div>
@@ -458,12 +460,8 @@ onclick="downloadAll()">
 id="results"
 class="results">
 
-<div
-class="empty"
-data-i18n="empty">
-
+<div class="empty">
 اكتب المجال ثم اضغط إنشاء.
-
 </div>
 
 </div>
@@ -475,9 +473,7 @@ data-i18n="empty">
 id="builder"
 class="card builder">
 
-<h2>
-🚀 Product Builder
-</h2>
+<h2>🚀 Product Builder</h2>
 
 <h3
 id="selectedProductTitle"
@@ -488,140 +484,63 @@ style="color:#a78bfa">
 <div class="builder-grid">
 
 <div class="info-box">
-
-<h3>
-🎯
-<span data-i18n="goal">
-هدف المنتج
-</span>
-</h3>
-
+<h3>🎯 <span data-i18n="goal">الهدف</span></h3>
 <p id="goal"></p>
-
 </div>
 
-
 <div class="info-box">
-
-<h3>
-🧱
-<span data-i18n="structure">
-هيكل المنتج
-</span>
-</h3>
-
+<h3>🧱 <span data-i18n="structure">الهيكل</span></h3>
 <p id="structure"></p>
-
 </div>
 
-
 <div class="info-box">
-
-<h3>
-🎁
-<span data-i18n="bonus">
-المكافآت
-</span>
-</h3>
-
+<h3>🎁 <span data-i18n="bonus">المكافآت</span></h3>
 <p id="bonus"></p>
-
 </div>
 
-
 <div class="info-box">
-
-<h3>
-💰
-<span data-i18n="price">
-السعر
-</span>
-</h3>
-
+<h3>💰 <span data-i18n="price">السعر</span></h3>
 <p id="price"></p>
-
 </div>
 
-
 <div class="info-box">
-
-<h3>
-📣
-<span data-i18n="marketing">
-التسويق
-</span>
-</h3>
-
+<h3>📣 <span data-i18n="marketing">التسويق</span></h3>
 <p id="marketing"></p>
-
 </div>
-
 
 <div class="info-box">
-
-<h3>
-✍️
-<span data-i18n="copy">
-نص البيع
-</span>
-</h3>
-
+<h3>✍️ <span data-i18n="copy">نص البيع</span></h3>
 <p id="copy"></p>
-
 </div>
 
 </div>
 
 
-<div
-class="actions"
-style="margin-top:15px">
+<div class="actions" style="margin-top:16px">
 
 <button
 class="btn-success"
 onclick="saveProject()">
-
-💾
-<span data-i18n="save">
-حفظ
-</span>
-
+💾 حفظ
 </button>
-
 
 <button
 class="btn-secondary"
 onclick="copyBlueprint()">
-
-📋
-<span data-i18n="copyBlueprint">
-نسخ Blueprint
-</span>
-
+📋 نسخ
 </button>
-
 
 <button
 class="btn-secondary"
 onclick="downloadBlueprint()">
-
-📥
-<span data-i18n="downloadBlueprint">
-تحميل Blueprint
-</span>
-
+📥 تحميل
 </button>
 
-
 <button
+id="fullProductBtn"
 class="btn"
 onclick="generateFullProduct()">
-
-✨
-<span data-i18n="full">
-إنشاء المنتج الكامل
-</span>
-
+✨ إنشاء المنتج الكامل
 </button>
 
 </div>
@@ -634,13 +553,9 @@ id="fullProduct"
 class="card full-product">
 
 <h2>
-
-📘
-
-<span data-i18n="fullTitle">
+📘 <span data-i18n="fullTitle">
 المنتج الكامل
 </span>
-
 </h2>
 
 
@@ -657,24 +572,13 @@ style="margin-top:15px">
 <button
 class="btn-secondary"
 onclick="copyFullProduct()">
-
-📋
-<span data-i18n="copyFull">
-نسخ
-</span>
-
+📋 نسخ
 </button>
-
 
 <button
 class="btn"
 onclick="downloadFullProduct()">
-
-📥
-<span data-i18n="downloadFull">
-تحميل
-</span>
-
+📥 تحميل
 </button>
 
 </div>
@@ -687,28 +591,21 @@ id="savedSection"
 class="card saved-section">
 
 <div
-style="display:flex;justify-content:space-between">
+style="display:flex;justify-content:space-between;align-items:center">
 
 <h2>
-
-📂
-
-<span data-i18n="saved">
-مشاريعي المحفوظة
+📂 <span data-i18n="saved">
+مشاريعي
 </span>
-
 </h2>
 
 <button
 class="btn-secondary"
 onclick="closeSavedProjects()">
-
 ✕
-
 </button>
 
 </div>
-
 
 <div
 id="savedList"
@@ -720,12 +617,11 @@ class="saved-list">
 
 <footer class="footer">
 
-AI Digital Product Builder •
-
+AI Digital Product Builder
+•
 <span data-i18n="footer">
-يعمل بواسطة الذكاء الاصطناعي
+Powered by AI
 </span>
-
 🤖
 
 </footer>
@@ -741,18 +637,27 @@ class="toast">
 
 <script>
 
+
+/* =========================
+   CONFIG
+========================= */
+
 const WORKER_URL =
 "https://ai-product-ai.nacer-na95.workers.dev";
 
 const STORAGE_KEY =
-"dpb_projects_v2";
+"dpb_projects_v3";
 
 const AUTOSAVE_KEY =
-"dpb_autosave_v2";
+"dpb_autosave_v3";
 
 const LANG_KEY =
-"dpb_language_v2";
+"dpb_language_v3";
 
+
+/* =========================
+   STATE
+========================= */
 
 let currentLang =
 localStorage.getItem(LANG_KEY) || "ar";
@@ -767,20 +672,24 @@ let fullProductText = "";
 
 let autoTimer = null;
 
-let imageData = "";
+let isGenerating = false;
 
+
+/* =========================
+   TRANSLATIONS
+========================= */
 
 const T = {
 
 ar:{
 
-saved:"مشاريعي المحفوظة",
+saved:"مشاريعي",
 
 heroTitle:
 "أنشئ منتجك الرقمي بالذكاء الاصطناعي",
 
 heroText:
-"أنشئ أفكار منتجات رقمية، وابنِ منتجًا كاملًا، واكتب خطة تسويق باستخدام الذكاء الاصطناعي.",
+"أنشئ أفكار منتجات رقمية، ثم حوّل أفضل فكرة إلى منتج كامل وخطة تسويق.",
 
 generator:
 "مولّد المنتجات",
@@ -791,9 +700,6 @@ niche:
 type:
 "نوع المنتج",
 
-imageLabel:
-"صورة اختيارية لإرسالها إلى الذكاء الاصطناعي",
-
 generate:
 "إنشاء 5 أفكار بالذكاء الاصطناعي",
 
@@ -803,14 +709,11 @@ ideas:
 downloadAll:
 "تحميل الكل",
 
-empty:
-"اكتب المجال ثم اضغط إنشاء.",
-
 goal:
-"هدف المنتج",
+"الهدف",
 
 structure:
-"هيكل المنتج",
+"الهيكل",
 
 bonus:
 "المكافآت",
@@ -824,26 +727,8 @@ marketing:
 copy:
 "نص البيع",
 
-save:
-"حفظ",
-
-copyBlueprint:
-"نسخ Blueprint",
-
-downloadBlueprint:
-"تحميل Blueprint",
-
-full:
-"إنشاء المنتج الكامل",
-
 fullTitle:
 "المنتج الكامل",
-
-copyFull:
-"نسخ",
-
-downloadFull:
-"تحميل",
 
 footer:
 "يعمل بواسطة الذكاء الاصطناعي"
@@ -852,14 +737,13 @@ footer:
 
 en:{
 
-saved:
-"My Saved Projects",
+saved:"My Projects",
 
 heroTitle:
 "Build Your Digital Product with AI",
 
 heroText:
-"Generate product ideas, build a complete product and create marketing content with AI.",
+"Generate digital product ideas and turn the best one into a complete product.",
 
 generator:
 "Product Generator",
@@ -870,9 +754,6 @@ niche:
 type:
 "Product Type",
 
-imageLabel:
-"Optional image to send to AI",
-
 generate:
 "Generate 5 AI Ideas",
 
@@ -882,14 +763,11 @@ ideas:
 downloadAll:
 "Download All",
 
-empty:
-"Enter a niche and press Generate.",
-
 goal:
-"Product Goal",
+"Goal",
 
 structure:
-"Product Structure",
+"Structure",
 
 bonus:
 "Bonuses",
@@ -903,26 +781,8 @@ marketing:
 copy:
 "Sales Copy",
 
-save:
-"Save",
-
-copyBlueprint:
-"Copy Blueprint",
-
-downloadBlueprint:
-"Download Blueprint",
-
-full:
-"Generate Full Product",
-
 fullTitle:
 "Full Product",
-
-copyFull:
-"Copy",
-
-downloadFull:
-"Download",
 
 footer:
 "Powered by AI"
@@ -932,106 +792,62 @@ footer:
 };
 
 
-function toast(message){
+/* =========================
+   UI
+========================= */
 
-const e =
+function showToast(message){
+
+const toast =
 document.getElementById("toast");
 
-e.textContent = message;
+toast.textContent = message;
 
-e.classList.add("show");
+toast.classList.add("show");
 
+clearTimeout(
+window.toastTimer
+);
+
+window.toastTimer =
 setTimeout(
-()=>e.classList.remove("show"),
-2500
+()=>{
+toast.classList.remove("show");
+},
+3000
 );
 
 }
 
 
-function copyText(text){
+function setLoading(button,loading,text){
 
-navigator.clipboard
-?.writeText(text)
+if(loading){
 
-.then(
-()=>
-toast(
-currentLang==="ar"
-?
-"تم النسخ ✅"
-:
-"Copied ✅"
-)
-)
+button.disabled = true;
 
-.catch(()=>{
+button.innerHTML =
+`
+<span class="loading">
+<span class="spinner"></span>
+${text}
+</span>
+`;
 
-const a =
-document.createElement("textarea");
+}else{
 
-a.value=text;
+button.disabled = false;
 
-document.body.appendChild(a);
+button.textContent = text;
 
-a.select();
-
-document.execCommand("copy");
-
-a.remove();
-
-toast("Copied ✅");
-
-});
+}
 
 }
 
 
-function downloadText(name,text){
-
-const u =
-URL.createObjectURL(
-new Blob(
-[text],
-{
-type:
-"text/plain;charset=utf-8"
-}
-)
-);
-
-const a =
-document.createElement("a");
-
-a.href=u;
-
-a.download=name;
-
-a.click();
-
-URL.revokeObjectURL(u);
-
-}
-
-
-function esc(s){
-
-return String(s ?? "")
-.replace(
-/[&<>"']/g,
-m=>({
-
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-
-}[m])
-);
-
-}
-
+/* =========================
+   LANGUAGE
+========================= */
 
 function applyLanguage(){
 
@@ -1039,7 +855,7 @@ document.documentElement.lang =
 currentLang;
 
 document.documentElement.dir =
-currentLang==="ar"
+currentLang === "ar"
 ?
 "rtl"
 :
@@ -1048,14 +864,15 @@ currentLang==="ar"
 
 document
 .querySelectorAll("[data-i18n]")
-.forEach(e=>{
+.forEach(el=>{
 
-const k =
-e.dataset.i18n;
+const key =
+el.dataset.i18n;
 
-if(T[currentLang][k])
-e.textContent =
-T[currentLang][k];
+if(T[currentLang][key]){
+el.textContent =
+T[currentLang][key];
+}
 
 });
 
@@ -1063,7 +880,7 @@ T[currentLang][k];
 document.getElementById(
 "languageBtn"
 ).textContent =
-currentLang==="ar"
+currentLang === "ar"
 ?
 "🌐 English"
 :
@@ -1075,7 +892,7 @@ currentLang==="ar"
 function toggleLanguage(){
 
 currentLang =
-currentLang==="ar"
+currentLang === "ar"
 ?
 "en"
 :
@@ -1088,67 +905,35 @@ currentLang
 
 applyLanguage();
 
-if(generatedProducts.length)
+if(generatedProducts.length){
 renderProducts();
+}
 
 }
 
 
-function previewImage(ev){
+/* =========================
+   AI REQUEST
+========================= */
 
-const f =
-ev.target.files[0];
+async function callAI(prompt,timeout=60000){
 
-if(!f){
+const controller =
+new AbortController();
 
-imageData="";
-
-return;
-
-}
-
-
-const r =
-new FileReader();
-
-r.onload=()=>{
-
-imageData =
-r.result;
-
-const p =
-document.getElementById(
-"imagePreview"
+const timer =
+setTimeout(
+()=>controller.abort(),
+timeout
 );
 
-p.src=imageData;
 
-p.style.display =
-"block";
-
-};
-
-r.readAsDataURL(f);
-
-}
-
-
-async function callAI(prompt){
-
-const body={
-prompt:prompt
-};
-
-
-if(imageData)
-body.image=imageData;
-
+try{
 
 const response =
 await fetch(
 WORKER_URL,
 {
-
 method:"POST",
 
 headers:{
@@ -1156,15 +941,30 @@ headers:{
 "application/json"
 },
 
-body:
-JSON.stringify(body)
+body:JSON.stringify({
+prompt:prompt
+}),
+
+signal:controller.signal
 
 }
 );
 
 
-const data =
+let data;
+
+try{
+
+data =
 await response.json();
+
+}catch{
+
+throw new Error(
+"Invalid server response"
+);
+
+}
 
 
 if(
@@ -1180,14 +980,95 @@ data.error ||
 }
 
 
-return data.result || "";
+return String(
+data.result || ""
+).trim();
+
+}
+
+catch(error){
+
+if(error.name === "AbortError"){
+
+throw new Error(
+currentLang === "ar"
+?
+"استغرق الطلب وقتًا طويلًا."
+:
+"The AI request took too long."
+);
+
+}
+
+throw error;
+
+}
+
+finally{
+
+clearTimeout(timer);
+
+}
 
 }
 
 
-async function generateProducts(
-scroll=true
+/* =========================
+   CLEAN AI JSON
+========================= */
+
+function cleanJSON(text){
+
+let value =
+String(text)
+.trim();
+
+value =
+value.replace(
+/```json/gi,
+""
+);
+
+value =
+value.replace(
+/```/g,
+""
+);
+
+const start =
+value.indexOf("[");
+
+const end =
+value.lastIndexOf("]");
+
+if(
+start !== -1 &&
+end !== -1 &&
+end > start
 ){
+
+value =
+value.slice(
+start,
+end + 1
+);
+
+}
+
+return value.trim();
+
+}
+
+
+/* =========================
+   GENERATE IDEAS
+========================= */
+
+async function generateProducts(){
+
+if(isGenerating)
+return;
+
 
 const niche =
 document
@@ -1203,8 +1084,8 @@ document
 
 if(!niche){
 
-toast(
-currentLang==="ar"
+showToast(
+currentLang === "ar"
 ?
 "اكتب المجال أولاً ✍️"
 :
@@ -1216,35 +1097,44 @@ return;
 }
 
 
-toast(
-currentLang==="ar"
-?
-"جاري إنشاء 5 أفكار بالذكاء الاصطناعي... 🤖"
-:
-"AI is generating 5 ideas... 🤖"
+isGenerating = true;
+
+
+const button =
+document.getElementById(
+"generateBtn"
 );
 
 
+setLoading(
+button,
+true,
+currentLang === "ar"
+?
+"جاري إنشاء الأفكار..."
+:
+"Generating ideas..."
+);
+
+
+/*
+Important:
+Short prompt = faster response.
+*/
+
 const prompt = `
 
-Create exactly 5 practical digital product ideas for beginners.
+Generate exactly 5 digital product ideas.
 
-Niche:
-${niche}
+Niche: ${niche}
 
-Product type:
-${type}
+Product type: ${type}
 
-Language:
-${currentLang==="ar"?"Arabic":"English"}
+Language: ${currentLang === "ar" ? "Arabic" : "English"}
 
-Return ONLY valid JSON array.
+Return ONLY a JSON array.
 
-Do not use markdown.
-
-Do not use code fences.
-
-Each object MUST have exactly these fields:
+Each object must contain:
 
 title
 description
@@ -1255,64 +1145,70 @@ price
 marketing
 copy
 
-Make all 5 ideas different,
-specific, practical and useful.
+Keep every field SHORT.
+Use practical beginner-friendly ideas.
+Make all 5 ideas different.
+
+No markdown.
+No explanation.
 
 `;
 
 
 try{
 
-let text =
-await callAI(prompt);
+const text =
+await callAI(prompt,45000);
 
-
-text =
-text
-.replace(
-/^```(?:json)?/i,
-""
-)
-.replace(
-/```$/,
-""
-)
-.trim();
-
-
-generatedProducts =
-JSON.parse(text);
+const parsed =
+JSON.parse(
+cleanJSON(text)
+);
 
 
 if(
-!Array.isArray(
-generatedProducts
-) ||
-generatedProducts.length !== 5
+!Array.isArray(parsed) ||
+parsed.length !== 5
 ){
 
 throw new Error(
-"Invalid AI result"
+"AI returned an invalid result."
 );
 
 }
 
 
-selectedProduct=null;
+generatedProducts =
+parsed.map(item=>({
 
-selectedProductIndex=-1;
+title:item.title || "",
+description:item.description || "",
+goal:item.goal || "",
+structure:item.structure || "",
+bonus:item.bonus || "",
+price:item.price || "",
+marketing:item.marketing || "",
+copy:item.copy || ""
 
-fullProductText="";
+}));
+
+
+selectedProductIndex = -1;
+
+selectedProduct = null;
+
+fullProductText = "";
 
 
 document.getElementById(
 "builder"
-).style.display="none";
-
+).style.display =
+"none";
 
 document.getElementById(
 "fullProduct"
-).style.display="none";
+).style.display =
+"none";
 
 
 renderProducts();
@@ -1320,54 +1216,81 @@ renderProducts();
 autoSave();
 
 
-if(scroll){
-
 document
 .getElementById("results")
-.scrollIntoView(
-{
+.scrollIntoView({
 behavior:"smooth"
-}
-);
-
-}
+});
 
 
-toast(
-currentLang==="ar"
+showToast(
+currentLang === "ar"
 ?
-"تم إنشاء 5 أفكار بالذكاء الاصطناعي ✅"
+"تم إنشاء 5 أفكار بسرعة ⚡🤖"
 :
-"5 AI ideas generated ✅"
+"5 AI ideas generated ⚡🤖"
 );
 
 
-}
-
-catch(error){
+}catch(error){
 
 console.error(error);
 
-toast(
-(
-currentLang==="ar"
+showToast(
+currentLang === "ar"
 ?
-"خطأ في الذكاء الاصطناعي: "
+"تعذر إنشاء الأفكار: "+error.message
 :
-"AI error: "
-)
-+
-error.message
+"Could not generate ideas: "+error.message
 );
 
 }
+
+finally{
+
+isGenerating = false;
+
+setLoading(
+button,
+false,
+currentLang === "ar"
+?
+"✨ إنشاء 5 أفكار بالذكاء الاصطناعي"
+:
+"✨ Generate 5 AI Ideas"
+);
+
+}
+
+}
+
+
+/* =========================
+   RENDER PRODUCTS
+========================= */
+
+function escapeHTML(value){
+
+return String(value ?? "")
+.replace(
+/[&<>"']/g,
+char=>({
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+
+}[char])
+);
 
 }
 
 
 function renderProducts(){
 
-const r =
+const results =
 document.getElementById(
 "results"
 );
@@ -1375,14 +1298,17 @@ document.getElementById(
 
 if(!generatedProducts.length){
 
-r.innerHTML = `
-
+results.innerHTML =
+`
 <div class="empty">
-
-${esc(T[currentLang].empty)}
-
+${
+currentLang === "ar"
+?
+"اكتب المجال ثم اضغط إنشاء."
+:
+"Enter a niche and press Generate."
+}
 </div>
-
 `;
 
 return;
@@ -1390,127 +1316,105 @@ return;
 }
 
 
-r.innerHTML =
+results.innerHTML =
 generatedProducts
-.map(
-(p,i)=>`
+.map((product,index)=>`
 
 <div class="product-card">
 
 <h3>
-${i+1}. ${esc(p.title)}
+${index+1}. ${escapeHTML(product.title)}
 </h3>
 
 <p>
-${esc(p.description)}
+${escapeHTML(product.description)}
 </p>
 
 <div class="actions">
 
 <button
 class="btn-secondary"
-onclick="copyProduct(${i})">
-
+onclick="copyProduct(${index})">
 📋
-${currentLang==="ar"?"نسخ":"Copy"}
-
+${currentLang === "ar" ? "نسخ" : "Copy"}
 </button>
-
 
 <button
 class="btn-secondary"
-onclick="downloadProduct(${i})">
-
+onclick="downloadProduct(${index})">
 📥
-${currentLang==="ar"?"تحميل":"Download"}
-
+${currentLang === "ar" ? "تحميل" : "Download"}
 </button>
-
 
 <button
 class="btn"
-onclick="createProduct(${i})">
-
+onclick="createProduct(${index})">
 🚀
-${currentLang==="ar"
-?
-"إنشاء المنتج"
-:
-"Create Product"}
-
+${currentLang === "ar" ? "إنشاء المنتج" : "Build"}
 </button>
 
 </div>
 
 </div>
 
-`
-)
+`)
 .join("");
 
 }
 
 
-function productToText(p){
+/* =========================
+   PRODUCT TEXT
+========================= */
+
+function productToText(product){
 
 return `
 
-${p.title}
+${product.title}
 
-${p.description}
+${product.description}
 
+${T[currentLang].goal}:
+${product.goal}
 
-${T[currentLang].goal}
+${T[currentLang].structure}:
+${product.structure}
 
-${p.goal}
+${T[currentLang].bonus}:
+${product.bonus}
 
+${T[currentLang].price}:
+${product.price}
 
-${T[currentLang].structure}
+${T[currentLang].marketing}:
+${product.marketing}
 
-${p.structure}
-
-
-${T[currentLang].bonus}
-
-${p.bonus}
-
-
-${T[currentLang].price}
-
-${p.price}
-
-
-${T[currentLang].marketing}
-
-${p.marketing}
-
-
-${T[currentLang].copy}
-
-${p.copy}
+${T[currentLang].copy}:
+${product.copy}
 
 `;
 
 }
 
 
-function copyProduct(i){
+function copyProduct(index){
 
 copyText(
 productToText(
-generatedProducts[i]
+generatedProducts[index]
 )
 );
 
 }
 
 
-function downloadProduct(i){
+function downloadProduct(index){
 
 downloadText(
-"digital-product-idea-"+(i+1)+".txt",
+"product-idea-"+(index+1)+".txt",
 productToText(
-generatedProducts[i]
+generatedProducts[index]
 )
 );
 
@@ -1521,8 +1425,12 @@ function downloadAll(){
 
 if(!generatedProducts.length){
 
-toast(
-T[currentLang].empty
+showToast(
+currentLang === "ar"
+?
+"لا توجد أفكار لتحميلها."
+:
+"No ideas to download."
 );
 
 return;
@@ -1530,42 +1438,46 @@ return;
 }
 
 
-downloadText(
-"digital-product-ideas.txt",
-
+const text =
 generatedProducts
 .map(
-(p,i)=>
-`#${i+1}\n${productToText(p)}`
+(product,index)=>
+`===== IDEA ${index+1} =====
+${productToText(product)}`
 )
-.join(
-"\n\n====================\n\n"
-)
+.join("\n\n");
 
+
+downloadText(
+"digital-product-ideas.txt",
+text
 );
 
 }
 
 
-function createProduct(
-i,
-scroll=true
-){
+/* =========================
+   BUILDER
+========================= */
 
-selectedProductIndex=i;
+function createProduct(index){
+
+selectedProductIndex =
+index;
 
 selectedProduct =
-generatedProducts[i];
+generatedProducts[index];
 
 
 document.getElementById(
 "builder"
-).style.display="block";
-
+).style.display =
+"block";
 
 document.getElementById(
 "fullProduct"
-).style.display="none";
+).style.display =
+"none";
 
 
 document.getElementById(
@@ -1582,11 +1494,11 @@ selectedProduct.title;
 "marketing",
 "copy"
 ]
-.forEach(k=>{
+.forEach(field=>{
 
-document.getElementById(k)
+document.getElementById(field)
 .textContent =
-selectedProduct[k] || "";
+selectedProduct[field] || "";
 
 });
 
@@ -1594,36 +1506,22 @@ selectedProduct[k] || "";
 autoSave();
 
 
-if(scroll){
-
 document
 .getElementById("builder")
-.scrollIntoView(
-{
+.scrollIntoView({
 behavior:"smooth"
-}
-);
-
-}
-
-}
-
-
-function blueprint(){
-
-return selectedProduct
-?
-productToText(selectedProduct)
-:
-"";
+});
 
 }
 
 
 function copyBlueprint(){
 
+if(!selectedProduct)
+return;
+
 copyText(
-blueprint()
+productToText(selectedProduct)
 );
 
 }
@@ -1631,29 +1529,60 @@ blueprint()
 
 function downloadBlueprint(){
 
+if(!selectedProduct)
+return;
+
 downloadText(
 "product-blueprint.txt",
-blueprint()
+productToText(selectedProduct)
 );
 
 }
 
 
+/* =========================
+   FULL PRODUCT
+========================= */
+
 async function generateFullProduct(){
+
+if(isGenerating)
+return;
+
 
 if(!selectedProduct){
 
-toast(
-currentLang==="ar"
+showToast(
+currentLang === "ar"
 ?
-"اختر منتجًا أولاً"
+"اختر منتجًا أولاً."
 :
-"Select a product first"
+"Select a product first."
 );
 
 return;
 
 }
+
+
+isGenerating = true;
+
+
+const button =
+document.getElementById(
+"fullProductBtn"
+);
+
+
+setLoading(
+button,
+true,
+currentLang === "ar"
+?
+"جاري بناء المنتج..."
+:
+"Building product..."
+);
 
 
 const niche =
@@ -1663,18 +1592,18 @@ document
 .trim();
 
 
-toast(
-currentLang==="ar"
-?
-"جاري بناء المنتج الكامل بالذكاء الاصطناعي... 🤖"
-:
-"AI is building the full product... 🤖"
-);
-
+/*
+Shorter and cleaner prompt.
+The AI still creates a useful complete product,
+but avoids unnecessary output.
+*/
 
 const prompt = `
 
 Create a complete beginner-friendly digital product.
+
+Language:
+${currentLang === "ar" ? "Arabic" : "English"}
 
 Niche:
 ${niche}
@@ -1700,35 +1629,21 @@ ${selectedProduct.price}
 Marketing:
 ${selectedProduct.marketing}
 
-Sales copy:
-${selectedProduct.copy}
+Create:
 
-Language:
-${currentLang==="ar"?"Arabic":"English"}
+1. Introduction
+2. 8 useful chapters
+3. Practical steps
+4. Simple examples
+5. Checklist
+6. Bonus section
+7. Marketing plan
+8. Final action plan
 
-Write a useful and detailed product.
+Make it clear, practical and ready to edit into an ebook.
 
-Include:
-
-Introduction
-
-8 detailed chapters
-
-Practical steps
-
-Examples
-
-Checklist
-
-Bonus section
-
-Marketing plan
-
-Final action plan
-
-Make it professional,
-useful and easy for beginners.
-
+Avoid repetition.
+Do not add unnecessary explanations.
 Return plain text only.
 
 `;
@@ -1737,7 +1652,10 @@ Return plain text only.
 try{
 
 fullProductText =
-await callAI(prompt);
+await callAI(
+prompt,
+120000
+);
 
 
 document.getElementById(
@@ -1757,15 +1675,13 @@ autoSave();
 
 document
 .getElementById("fullProduct")
-.scrollIntoView(
-{
+.scrollIntoView({
 behavior:"smooth"
-}
-);
+});
 
 
-toast(
-currentLang==="ar"
+showToast(
+currentLang === "ar"
 ?
 "تم إنشاء المنتج الكامل ✅"
 :
@@ -1773,50 +1689,171 @@ currentLang==="ar"
 );
 
 
-}
-
-catch(error){
+}catch(error){
 
 console.error(error);
 
-toast(
-(
-currentLang==="ar"
+showToast(
+currentLang === "ar"
 ?
-"خطأ: "
+"تعذر إنشاء المنتج: "+error.message
 :
-"Error: "
-)
-+
-error.message
+"Could not build product: "+error.message
 );
 
 }
+
+finally{
+
+isGenerating = false;
+
+setLoading(
+button,
+false,
+"✨ "+(
+currentLang === "ar"
+?
+"إنشاء المنتج الكامل"
+:
+"Generate Full Product"
+)
+);
+
+}
+
+}
+
+
+/* =========================
+   COPY / DOWNLOAD
+========================= */
+
+function copyText(text){
+
+if(!text)
+return;
+
+
+if(
+navigator.clipboard &&
+navigator.clipboard.writeText
+){
+
+navigator.clipboard
+.writeText(text)
+.then(()=>{
+
+showToast(
+currentLang === "ar"
+?
+"تم النسخ ✅"
+:
+"Copied ✅"
+);
+
+})
+.catch(
+()=>fallbackCopy(text)
+);
+
+}else{
+
+fallbackCopy(text);
+
+}
+
+}
+
+
+function fallbackCopy(text){
+
+const area =
+document.createElement("textarea");
+
+area.value = text;
+
+document.body.appendChild(area);
+
+area.select();
+
+document.execCommand("copy");
+
+area.remove();
+
+showToast(
+currentLang === "ar"
+?
+"تم النسخ ✅"
+:
+"Copied ✅"
+);
+
+}
+
+
+function downloadText(filename,text){
+
+const blob =
+new Blob(
+[text],
+{
+type:
+"text/plain;charset=utf-8"
+}
+);
+
+
+const url =
+URL.createObjectURL(blob);
+
+
+const link =
+document.createElement("a");
+
+link.href = url;
+
+link.download = filename;
+
+document.body.appendChild(link);
+
+link.click();
+
+link.remove();
+
+
+setTimeout(
+()=>URL.revokeObjectURL(url),
+1000
+);
 
 }
 
 
 function copyFullProduct(){
 
-if(fullProductText)
-copyText(fullProductText);
+copyText(
+fullProductText
+);
 
 }
 
 
 function downloadFullProduct(){
 
-if(fullProductText){
+if(!fullProductText)
+return;
 
 downloadText(
-"full-digital-product.txt",
+"complete-digital-product.txt",
 fullProductText
 );
 
 }
 
-}
 
+/* =========================
+   SAVE PROJECTS
+========================= */
 
 function getProjects(){
 
@@ -1828,9 +1865,7 @@ STORAGE_KEY
 )
 ) || [];
 
-}
-
-catch{
+}catch{
 
 return [];
 
@@ -1843,12 +1878,12 @@ function saveProject(){
 
 if(!selectedProduct){
 
-toast(
-currentLang==="ar"
+showToast(
+currentLang === "ar"
 ?
-"أنشئ أو اختر منتجًا أولاً"
+"اختر منتجًا أولاً."
 :
-"Create or select a product first"
+"Select a product first."
 );
 
 return;
@@ -1880,19 +1915,16 @@ document.getElementById(
 language:
 currentLang,
 
-generatedProducts:
-
+products:
 generatedProducts,
 
-selectedProductIndex:
-
+selected:
 selectedProductIndex,
 
-fullProductText:
-
+full:
 fullProductText,
 
-createdAt:
+date:
 new Date().toISOString()
 
 });
@@ -1904,19 +1936,20 @@ JSON.stringify(projects)
 );
 
 
-toast(
-currentLang==="ar"
+showToast(
+currentLang === "ar"
 ?
 "تم حفظ المشروع 💾"
 :
 "Project saved 💾"
 );
 
-
-showSavedProjects();
-
 }
 
+
+/* =========================
+   SAVED PROJECTS
+========================= */
 
 function showSavedProjects(){
 
@@ -1925,17 +1958,14 @@ document.getElementById(
 ).style.display =
 "block";
 
-
 renderSavedProjects();
 
 
 document
 .getElementById("savedSection")
-.scrollIntoView(
-{
+.scrollIntoView({
 behavior:"smooth"
-}
-);
+});
 
 }
 
@@ -1957,26 +1987,24 @@ document.getElementById(
 "savedList"
 );
 
+
 const projects =
 getProjects();
 
 
 if(!projects.length){
 
-list.innerHTML = `
-
+list.innerHTML =
+`
 <div class="empty">
-
 ${
-currentLang==="ar"
+currentLang === "ar"
 ?
 "لا توجد مشاريع محفوظة."
 :
 "No saved projects."
 }
-
 </div>
-
 `;
 
 return;
@@ -1986,90 +2014,78 @@ return;
 
 list.innerHTML =
 projects
-.map(
-(p,i)=>`
+.map((project,index)=>`
 
 <div class="saved-item">
 
-<div class="saved-info">
+<div>
 
-<h3>
-${esc(p.title)}
+<h3 style="color:#c4b5fd">
+${escapeHTML(project.title)}
 </h3>
 
-<p>
-
-${esc(p.niche)}
-•
-${new Date(
-p.createdAt
-).toLocaleString()}
-
+<p style="color:#94a3b8">
+${escapeHTML(project.niche)}
 </p>
 
 </div>
-
 
 <div class="actions">
 
 <button
 class="btn"
-onclick="openProject(${i})">
-
+onclick="openProject(${index})">
 Open
-
 </button>
-
 
 <button
 class="btn-danger"
-onclick="deleteProject(${i})">
-
+onclick="deleteProject(${index})">
 Delete
-
 </button>
 
 </div>
 
 </div>
 
-`
-)
+`)
 .join("");
 
 }
 
 
-function openProject(i){
+function openProject(index){
 
-const p =
-getProjects()[i];
+const project =
+getProjects()[index];
+
+
+if(!project)
+return;
 
 
 document.getElementById(
 "niche"
 ).value =
-p.niche;
+project.niche || "";
 
 
 document.getElementById(
 "type"
 ).value =
-p.type;
+project.type || "E-book";
 
 
 currentLang =
-p.language ||
-currentLang;
+project.language || currentLang;
 
 
 generatedProducts =
-p.generatedProducts ||
-[];
+project.products || [];
 
 
 selectedProductIndex =
-p.selectedProductIndex ?? -1;
+project.selected ?? -1;
 
 
 selectedProduct =
@@ -2079,7 +2095,7 @@ selectedProductIndex
 
 
 fullProductText =
-p.fullProductText || "";
+project.full || "";
 
 
 applyLanguage();
@@ -2087,11 +2103,13 @@ applyLanguage();
 renderProducts();
 
 
-if(selectedProduct)
+if(selectedProduct){
+
 createProduct(
-selectedProductIndex,
-false
+selectedProductIndex
 );
+
+}
 
 
 if(fullProductText){
@@ -2101,7 +2119,6 @@ document.getElementById(
 ).textContent =
 fullProductText;
 
-
 document.getElementById(
 "fullProduct"
 ).style.display =
@@ -2110,18 +2127,27 @@ document.getElementById(
 }
 
 
-toast("Opened");
+closeSavedProjects();
+
+
+showToast(
+currentLang === "ar"
+?
+"تم فتح المشروع"
+:
+"Project opened"
+);
 
 }
 
 
-function deleteProject(i){
+function deleteProject(index){
 
 const projects =
 getProjects();
 
 
-projects.splice(i,1);
+projects.splice(index,1);
 
 
 localStorage.setItem(
@@ -2135,6 +2161,10 @@ renderSavedProjects();
 }
 
 
+/* =========================
+   AUTO SAVE
+========================= */
+
 function autoSave(){
 
 clearTimeout(autoTimer);
@@ -2143,11 +2173,7 @@ clearTimeout(autoTimer);
 autoTimer =
 setTimeout(()=>{
 
-localStorage.setItem(
-
-AUTOSAVE_KEY,
-
-JSON.stringify({
+const data = {
 
 niche:
 document.getElementById(
@@ -2162,20 +2188,24 @@ document.getElementById(
 language:
 currentLang,
 
-generatedProducts:
+products:
 generatedProducts,
 
-selectedProductIndex:
+selected:
 selectedProductIndex,
 
-fullProductText:
+full:
 fullProductText
 
-})
+};
 
+
+localStorage.setItem(
+AUTOSAVE_KEY,
+JSON.stringify(data)
 );
 
-},500);
+},400);
 
 }
 
@@ -2184,7 +2214,7 @@ function restoreAutoSave(){
 
 try{
 
-const d =
+const data =
 JSON.parse(
 localStorage.getItem(
 AUTOSAVE_KEY
@@ -2192,35 +2222,32 @@ AUTOSAVE_KEY
 );
 
 
-if(!d)
+if(!data)
 return;
 
 
 document.getElementById(
 "niche"
 ).value =
-d.niche || "";
+data.niche || "";
 
 
 document.getElementById(
 "type"
 ).value =
-d.type || "ebook";
+data.type || "E-book";
 
 
 currentLang =
-d.language ||
-currentLang;
+data.language || currentLang;
 
 
 generatedProducts =
-d.generatedProducts ||
-[];
+data.products || [];
 
 
 selectedProductIndex =
-d.selectedProductIndex ??
--1;
+data.selected ?? -1;
 
 
 selectedProduct =
@@ -2230,8 +2257,7 @@ selectedProductIndex
 
 
 fullProductText =
-d.fullProductText ||
-"";
+data.full || "";
 
 
 applyLanguage();
@@ -2243,8 +2269,7 @@ renderProducts();
 
 if(selectedProduct)
 createProduct(
-selectedProductIndex,
-false
+selectedProductIndex
 );
 
 
@@ -2255,7 +2280,6 @@ document.getElementById(
 ).textContent =
 fullProductText;
 
-
 document.getElementById(
 "fullProduct"
 ).style.display =
@@ -2263,16 +2287,31 @@ document.getElementById(
 
 }
 
+}catch(error){
+
+console.log(
+"Autosave restore skipped"
+);
+
 }
 
-catch(e){}
-
 }
 
+
+/* =========================
+   START
+========================= */
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
 
 applyLanguage();
 
 restoreAutoSave();
+
+}
+);
 
 </script>
 
