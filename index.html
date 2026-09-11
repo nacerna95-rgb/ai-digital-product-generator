@@ -2,359 +2,274 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Digital Product Builder</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Digital Product Builder</title>
 
 <style>
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
-    margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:
-        radial-gradient(circle at top left,#182848 0%,transparent 40%),
-        linear-gradient(135deg,#050816,#0b1020,#111827);
-    color:#fff;
-    min-height:100vh;
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#050816,#111827);
+color:#fff;
+min-height:100vh
 }
 
 .container{
-    width:min(1100px,94%);
-    margin:auto;
-    padding:20px 0 50px;
+width:min(1100px,94%);
+margin:auto;
+padding:20px 0 50px
 }
 
 .topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    margin-bottom:25px;
-    flex-wrap:wrap;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+flex-wrap:wrap
 }
 
 .logo{
-    font-size:24px;
-    font-weight:bold;
+font-size:23px;
+font-weight:700
 }
 
 .logo span{
-    color:#8b5cf6;
+color:#a78bfa
 }
 
-.nav{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
+.nav,.actions{
+display:flex;
+gap:8px;
+flex-wrap:wrap
 }
 
 button{
-    border:0;
-    border-radius:10px;
-    padding:11px 16px;
-    cursor:pointer;
-    font-weight:bold;
-    transition:.2s;
-}
-
-button:hover{
-    transform:translateY(-1px);
+border:0;
+border-radius:10px;
+padding:11px 15px;
+font-weight:700;
+cursor:pointer
 }
 
 .btn{
-    background:#8b5cf6;
-    color:white;
-}
-
-.btn:hover{
-    background:#7c3aed;
-}
-
-.btn-secondary{
-    background:#1f2937;
-    color:#fff;
-    border:1px solid #374151;
+background:#8b5cf6;
+color:#fff
 }
 
 .btn-success{
-    background:#059669;
-    color:#fff;
+background:#059669;
+color:#fff
+}
+
+.btn-secondary{
+background:#1f2937;
+color:#fff;
+border:1px solid #374151
 }
 
 .btn-danger{
-    background:#dc2626;
-    color:#fff;
-}
-
-.btn-light{
-    background:#fff;
-    color:#111827;
+background:#dc2626;
+color:#fff
 }
 
 .hero{
-    text-align:center;
-    padding:35px 10px;
+text-align:center;
+padding:35px 10px
 }
 
 .hero h1{
-    font-size:clamp(30px,6vw,52px);
-    margin:0 0 15px;
+font-size:clamp(30px,6vw,52px);
+margin:0 0 12px
 }
 
 .hero h1 span{
-    color:#a78bfa;
+color:#a78bfa
 }
 
 .hero p{
-    color:#cbd5e1;
-    font-size:17px;
-    max-width:700px;
-    margin:auto;
-    line-height:1.7;
+color:#cbd5e1;
+line-height:1.7;
+max-width:700px;
+margin:auto
 }
 
 .badges{
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-top:20px;
+display:flex;
+justify-content:center;
+gap:8px;
+flex-wrap:wrap;
+margin-top:18px
 }
 
 .badge{
-    background:#111827;
-    border:1px solid #374151;
-    padding:8px 13px;
-    border-radius:20px;
-    color:#d1d5db;
-    font-size:13px;
+background:#111827;
+border:1px solid #374151;
+padding:8px 12px;
+border-radius:20px;
+color:#d1d5db;
+font-size:13px
 }
 
 .card{
-    background:rgba(17,24,39,.88);
-    border:1px solid #273449;
-    border-radius:18px;
-    padding:22px;
-    margin-bottom:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,.2);
+background:rgba(17,24,39,.9);
+border:1px solid #273449;
+border-radius:18px;
+padding:22px;
+margin:0 0 20px;
+box-shadow:0 15px 40px #0003
 }
 
-.card h2{
-    margin-top:0;
-}
-
-.form-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+.form-grid,
+.builder-grid,
+.results{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px
 }
 
 label{
-    display:block;
-    margin-bottom:8px;
-    color:#d1d5db;
-    font-weight:bold;
+display:block;
+margin-bottom:8px;
+color:#d1d5db;
+font-weight:700
 }
 
-input,select,textarea{
-    width:100%;
-    padding:13px;
-    border-radius:10px;
-    border:1px solid #374151;
-    background:#0b1220;
-    color:white;
-    outline:none;
-    font-size:15px;
+input,
+select,
+textarea{
+width:100%;
+padding:13px;
+border-radius:10px;
+border:1px solid #374151;
+background:#0b1220;
+color:#fff;
+font-size:15px
 }
 
-input:focus,select:focus,textarea:focus{
-    border-color:#8b5cf6;
+input:focus,
+select:focus,
+textarea:focus{
+outline:none;
+border-color:#8b5cf6
 }
 
 .main-action{
-    margin-top:18px;
-    width:100%;
-    font-size:16px;
-    padding:14px;
+width:100%;
+margin-top:18px;
+font-size:16px;
+padding:14px
 }
 
-.results{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
+.product-card,
+.info-box,
+.saved-item{
+background:#0b1220;
+border:1px solid #263449;
+border-radius:13px;
+padding:16px
 }
 
-.product-card{
-    background:#0d1525;
-    border:1px solid #263449;
-    border-radius:15px;
-    padding:18px;
+.product-card h3,
+.saved-info h3{
+color:#c4b5fd
 }
 
-.product-card h3{
-    margin-top:0;
-    color:#c4b5fd;
+.product-card p,
+.info-box p,
+.saved-info p{
+color:#cbd5e1;
+line-height:1.7
 }
 
-.product-card p{
-    color:#cbd5e1;
-    line-height:1.6;
-}
-
-.actions{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
-    margin-top:15px;
-}
-
-.actions button{
-    flex:1;
-    min-width:100px;
+.builder,
+.full-product,
+.saved-section{
+display:none
 }
 
 .empty{
-    text-align:center;
-    color:#94a3b8;
-    padding:30px;
-}
-
-.builder{
-    display:none;
-}
-
-.builder-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-}
-
-.info-box{
-    background:#0b1220;
-    border:1px solid #263449;
-    border-radius:12px;
-    padding:16px;
-}
-
-.info-box h3{
-    margin-top:0;
-    color:#a78bfa;
-}
-
-.info-box p,
-.info-box li{
-    color:#cbd5e1;
-    line-height:1.7;
-}
-
-.full-product{
-    display:none;
+text-align:center;
+color:#94a3b8;
+padding:30px;
+grid-column:1/-1
 }
 
 .full-content{
-    background:#080d18;
-    border:1px solid #263449;
-    border-radius:12px;
-    padding:20px;
-    white-space:pre-wrap;
-    line-height:1.8;
-    color:#e5e7eb;
-    max-height:600px;
-    overflow:auto;
-}
-
-.saved-section{
-    display:none;
+background:#080d18;
+border:1px solid #263449;
+border-radius:12px;
+padding:20px;
+white-space:pre-wrap;
+line-height:1.8;
+max-height:650px;
+overflow:auto
 }
 
 .saved-list{
-    display:grid;
-    gap:12px;
+display:grid;
+gap:12px
 }
 
 .saved-item{
-    background:#0b1220;
-    border:1px solid #263449;
-    border-radius:13px;
-    padding:16px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-}
-
-.saved-info h3{
-    margin:0 0 7px;
-    color:#c4b5fd;
-}
-
-.saved-info p{
-    margin:3px 0;
-    color:#94a3b8;
-    font-size:13px;
-}
-
-.toast{
-    position:fixed;
-    bottom:20px;
-    left:50%;
-    transform:translateX(-50%) translateY(100px);
-    background:#111827;
-    border:1px solid #374151;
-    color:white;
-    padding:13px 20px;
-    border-radius:10px;
-    opacity:0;
-    transition:.3s;
-    z-index:9999;
-}
-
-.toast.show{
-    opacity:1;
-    transform:translateX(-50%) translateY(0);
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px
 }
 
 .footer{
-    text-align:center;
-    color:#64748b;
-    margin-top:35px;
-    font-size:13px;
+text-align:center;
+color:#64748b;
+margin-top:35px;
+font-size:13px
+}
+
+.toast{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%) translateY(100px);
+background:#111827;
+border:1px solid #374151;
+padding:13px 20px;
+border-radius:10px;
+opacity:0;
+transition:.3s;
+z-index:99
+}
+
+.toast.show{
+opacity:1;
+transform:translateX(-50%) translateY(0)
+}
+
+.filebox{
+margin-top:15px
+}
+
+.preview{
+max-width:180px;
+max-height:140px;
+border-radius:10px;
+margin-top:10px;
+display:none
 }
 
 @media(max-width:700px){
-    .form-grid,
-    .builder-grid,
-    .results{
-        grid-template-columns:1fr;
-    }
 
-    .topbar{
-        align-items:stretch;
-    }
+.form-grid,
+.builder-grid,
+.results{
+grid-template-columns:1fr
+}
 
-    .nav{
-        width:100%;
-    }
+.saved-item{
+flex-direction:column;
+align-items:stretch
+}
 
-    .nav button{
-        flex:1;
-    }
-
-    .saved-item{
-        flex-direction:column;
-        align-items:stretch;
-    }
-
-    .saved-item .actions{
-        width:100%;
-    }
-
-    .saved-item button{
-        flex:1;
-    }
 }
 </style>
 </head>
@@ -365,1191 +280,972 @@ input:focus,select:focus,textarea:focus{
 
 <header class="topbar">
 
-    <div class="logo">
-        🚀 <span>Digital Product</span> Builder
-    </div>
+<div class="logo">
+🚀 <span>AI Digital Product</span> Builder
+</div>
 
-    <div class="nav">
-        <button class="btn-secondary" onclick="toggleLanguage()" id="languageBtn">
-            🌐 English
-        </button>
+<div class="nav">
 
-        <button class="btn-secondary" onclick="showSavedProjects()">
-            📂 <span data-i18n="savedProjects">مشاريعي المحفوظة</span>
-        </button>
-    </div>
+<button
+class="btn-secondary"
+onclick="toggleLanguage()"
+id="languageBtn">
+🌐 English
+</button>
+
+<button
+class="btn-secondary"
+onclick="showSavedProjects()">
+
+📂 <span data-i18n="saved">
+مشاريعي المحفوظة
+</span>
+
+</button>
+
+</div>
 
 </header>
 
 
 <section class="hero">
 
-    <h1>
-        <span data-i18n="heroTitle">أنشئ منتجك الرقمي</span> 🚀
-    </h1>
+<h1>
+<span data-i18n="heroTitle">
+أنشئ منتجك الرقمي بالذكاء الاصطناعي
+</span>
+🤖
+</h1>
 
-    <p data-i18n="heroText">
-        أداة بسيطة تساعدك على إنشاء أفكار للمنتجات الرقمية،
-        وبناء منتج كامل وخطة تسويق من هاتفك.
-    </p>
+<p data-i18n="heroText">
+أنشئ أفكار منتجات رقمية، وابنِ منتجًا كاملًا، واكتب خطة تسويق باستخدام الذكاء الاصطناعي.
+</p>
 
-    <div class="badges">
-        <div class="badge">📱 Mobile Friendly</div>
-        <div class="badge">💾 Auto Save</div>
-        <div class="badge">🌐 Arabic / English</div>
-        <div class="badge">🆓 No Server</div>
-    </div>
+<div class="badges">
 
-</section>
+<div class="badge">📱 Mobile</div>
+<div class="badge">🤖 Real AI</div>
+<div class="badge">💾 Auto Save</div>
+<div class="badge">🌐 Arabic / English</div>
 
-
-<section class="card">
-
-    <h2>✨ <span data-i18n="generatorTitle">مولّد المنتجات</span></h2>
-
-    <div class="form-grid">
-
-        <div>
-            <label data-i18n="nicheLabel">المجال / Niche</label>
-
-            <input
-                id="niche"
-                type="text"
-                placeholder="مثال: TikTok, Fitness, AI..."
-                oninput="scheduleAutoSave()"
-            >
-        </div>
-
-        <div>
-            <label data-i18n="typeLabel">نوع المنتج</label>
-
-            <select id="type" onchange="scheduleAutoSave()">
-
-                <option value="ebook">📘 E-book</option>
-                <option value="template">📦 Template Pack</option>
-                <option value="checklist">✅ Checklist</option>
-                <option value="prompts">🤖 AI Prompt Pack</option>
-                <option value="course">🎓 Mini Course</option>
-
-            </select>
-        </div>
-
-    </div>
-
-    <button
-        class="btn main-action"
-        onclick="generateProducts()"
-        data-i18n="generateIdeas"
-    >
-        ✨ Generate 5 Product Ideas
-    </button>
+</div>
 
 </section>
 
 
 <section class="card">
 
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+<h2>
+✨ <span data-i18n="generator">
+مولّد المنتجات
+</span>
+</h2>
 
-        <h2>💡 <span data-i18n="ideasTitle">أفكار المنتجات</span></h2>
+<div class="form-grid">
 
-        <button
-            class="btn-secondary"
-            onclick="downloadAll()"
-        >
-            📥 <span data-i18n="downloadAll">تحميل كل الأفكار</span>
-        </button>
+<div>
 
-    </div>
+<label data-i18n="niche">
+المجال / Niche
+</label>
 
-    <div id="results" class="results">
+<input
+id="niche"
+placeholder="Fitness, TikTok, AI..."
+oninput="autoSave()">
 
-        <div class="empty" style="grid-column:1/-1">
-            <span data-i18n="emptyIdeas">
-                اكتب مجالك ثم اضغط Generate لبدء العمل.
-            </span>
-        </div>
-
-    </div>
-
-</section>
+</div>
 
 
-<section id="builder" class="card builder">
+<div>
 
-    <h2>
-        🚀 <span data-i18n="builderTitle">Product Builder</span>
-    </h2>
+<label data-i18n="type">
+نوع المنتج
+</label>
 
-    <div id="selectedProductTitle"
-         style="color:#a78bfa;font-size:20px;font-weight:bold;margin-bottom:20px">
-    </div>
+<select
+id="type"
+onchange="autoSave()">
 
-    <div class="builder-grid">
+<option value="ebook">
+📘 E-book
+</option>
 
-        <div class="info-box">
-            <h3 data-i18n="goalTitle">🎯 Product Goal</h3>
-            <p id="goal"></p>
-        </div>
+<option value="template">
+📦 Template Pack
+</option>
 
-        <div class="info-box">
-            <h3 data-i18n="structureTitle">🧱 Product Structure</h3>
-            <p id="structure"></p>
-        </div>
+<option value="checklist">
+✅ Checklist
+</option>
 
-        <div class="info-box">
-            <h3 data-i18n="bonusTitle">🎁 Bonus Ideas</h3>
-            <p id="bonus"></p>
-        </div>
+<option value="prompts">
+🤖 AI Prompt Pack
+</option>
 
-        <div class="info-box">
-            <h3 data-i18n="priceTitle">💰 Suggested Price</h3>
-            <p id="price"></p>
-        </div>
+<option value="course">
+🎓 Mini Course
+</option>
 
-        <div class="info-box">
-            <h3 data-i18n="marketingTitle">📣 Marketing Plan</h3>
-            <p id="marketing"></p>
-        </div>
+</select>
 
-        <div class="info-box">
-            <h3 data-i18n="copyTitle">✍️ Copy Blueprint</h3>
-            <p id="copy"></p>
-        </div>
+</div>
 
-    </div>
+</div>
 
-    <div class="actions">
 
-        <button class="btn-success" onclick="saveProject()">
-            💾 <span data-i18n="saveProject">حفظ المشروع</span>
-        </button>
+<div class="filebox">
 
-        <button class="btn-secondary" onclick="copyBlueprint()">
-            📋 <span data-i18n="copyBlueprint">نسخ Blueprint</span>
-        </button>
+<label data-i18n="imageLabel">
+صورة اختيارية لإرسالها إلى الذكاء الاصطناعي
+</label>
 
-        <button class="btn-secondary" onclick="downloadBlueprint()">
-            📥 <span data-i18n="downloadBlueprint">تحميل Blueprint</span>
-        </button>
+<input
+id="imageInput"
+type="file"
+accept="image/*"
+onchange="previewImage(event)">
 
-        <button class="btn" onclick="generateFullProduct()">
-            ✨ <span data-i18n="generateFull">Generate Full Product</span>
-        </button>
+<img
+id="imagePreview"
+class="preview">
 
-        <button class="btn-secondary" onclick="closeBuilder()">
-            ← <span data-i18n="backIdeas">Back</span>
-        </button>
+</div>
 
-    </div>
+
+<button
+class="btn main-action"
+onclick="generateProducts()">
+
+✨
+
+<span data-i18n="generate">
+إنشاء 5 أفكار بالذكاء الاصطناعي
+</span>
+
+</button>
 
 </section>
 
 
-<section id="fullProduct" class="card full-product">
+<section class="card">
 
-    <h2>
-        📘 <span data-i18n="fullProductTitle">Full Product</span>
-    </h2>
+<div
+style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
 
-    <div id="fullContent" class="full-content"></div>
+<h2>
+💡 <span data-i18n="ideas">
+أفكار المنتجات
+</span>
+</h2>
 
-    <div class="actions">
+<button
+class="btn-secondary"
+onclick="downloadAll()">
 
-        <button class="btn-success" onclick="saveProject()">
-            💾 <span data-i18n="saveProject">حفظ المشروع</span>
-        </button>
+📥
 
-        <button class="btn-secondary" onclick="copyFullProduct()">
-            📋 <span data-i18n="copyFull">نسخ المنتج الكامل</span>
-        </button>
+<span data-i18n="downloadAll">
+تحميل الكل
+</span>
 
-        <button class="btn" onclick="downloadFullProduct()">
-            📥 <span data-i18n="downloadFull">تحميل المنتج الكامل</span>
-        </button>
+</button>
 
-    </div>
+</div>
+
+
+<div
+id="results"
+class="results">
+
+<div
+class="empty"
+data-i18n="empty">
+
+اكتب المجال ثم اضغط إنشاء.
+
+</div>
+
+</div>
 
 </section>
 
 
-<section id="savedSection" class="card saved-section">
+<section
+id="builder"
+class="card builder">
 
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+<h2>
+🚀 Product Builder
+</h2>
 
-        <h2>
-            📂 <span data-i18n="savedProjects">مشاريعي المحفوظة</span>
-        </h2>
+<h3
+id="selectedProductTitle"
+style="color:#a78bfa">
+</h3>
 
-        <button
-            class="btn-secondary"
-            onclick="closeSavedProjects()"
-        >
-            ✕
-        </button>
 
-    </div>
+<div class="builder-grid">
 
-    <div id="savedList" class="saved-list"></div>
+<div class="info-box">
+
+<h3>
+🎯
+<span data-i18n="goal">
+هدف المنتج
+</span>
+</h3>
+
+<p id="goal"></p>
+
+</div>
+
+
+<div class="info-box">
+
+<h3>
+🧱
+<span data-i18n="structure">
+هيكل المنتج
+</span>
+</h3>
+
+<p id="structure"></p>
+
+</div>
+
+
+<div class="info-box">
+
+<h3>
+🎁
+<span data-i18n="bonus">
+المكافآت
+</span>
+</h3>
+
+<p id="bonus"></p>
+
+</div>
+
+
+<div class="info-box">
+
+<h3>
+💰
+<span data-i18n="price">
+السعر
+</span>
+</h3>
+
+<p id="price"></p>
+
+</div>
+
+
+<div class="info-box">
+
+<h3>
+📣
+<span data-i18n="marketing">
+التسويق
+</span>
+</h3>
+
+<p id="marketing"></p>
+
+</div>
+
+
+<div class="info-box">
+
+<h3>
+✍️
+<span data-i18n="copy">
+نص البيع
+</span>
+</h3>
+
+<p id="copy"></p>
+
+</div>
+
+</div>
+
+
+<div
+class="actions"
+style="margin-top:15px">
+
+<button
+class="btn-success"
+onclick="saveProject()">
+
+💾
+<span data-i18n="save">
+حفظ
+</span>
+
+</button>
+
+
+<button
+class="btn-secondary"
+onclick="copyBlueprint()">
+
+📋
+<span data-i18n="copyBlueprint">
+نسخ Blueprint
+</span>
+
+</button>
+
+
+<button
+class="btn-secondary"
+onclick="downloadBlueprint()">
+
+📥
+<span data-i18n="downloadBlueprint">
+تحميل Blueprint
+</span>
+
+</button>
+
+
+<button
+class="btn"
+onclick="generateFullProduct()">
+
+✨
+<span data-i18n="full">
+إنشاء المنتج الكامل
+</span>
+
+</button>
+
+</div>
+
+</section>
+
+
+<section
+id="fullProduct"
+class="card full-product">
+
+<h2>
+
+📘
+
+<span data-i18n="fullTitle">
+المنتج الكامل
+</span>
+
+</h2>
+
+
+<div
+id="fullContent"
+class="full-content">
+</div>
+
+
+<div
+class="actions"
+style="margin-top:15px">
+
+<button
+class="btn-secondary"
+onclick="copyFullProduct()">
+
+📋
+<span data-i18n="copyFull">
+نسخ
+</span>
+
+</button>
+
+
+<button
+class="btn"
+onclick="downloadFullProduct()">
+
+📥
+<span data-i18n="downloadFull">
+تحميل
+</span>
+
+</button>
+
+</div>
+
+</section>
+
+
+<section
+id="savedSection"
+class="card saved-section">
+
+<div
+style="display:flex;justify-content:space-between">
+
+<h2>
+
+📂
+
+<span data-i18n="saved">
+مشاريعي المحفوظة
+</span>
+
+</h2>
+
+<button
+class="btn-secondary"
+onclick="closeSavedProjects()">
+
+✕
+
+</button>
+
+</div>
+
+
+<div
+id="savedList"
+class="saved-list">
+</div>
 
 </section>
 
 
 <footer class="footer">
-    Digital Product Builder • <span data-i18n="footerText">يعمل بدون سيرفر وبدون تكلفة</span> 🚀
+
+AI Digital Product Builder •
+
+<span data-i18n="footer">
+يعمل بواسطة الذكاء الاصطناعي
+</span>
+
+🤖
+
 </footer>
 
 </div>
 
 
-<div id="toast" class="toast"></div>
+<div
+id="toast"
+class="toast">
+</div>
 
 
 <script>
 
-/* =========================
-   STORAGE
-========================= */
+const WORKER_URL =
+"https://ai-product-ai.nacer-na95.workers.dev";
 
-const STORAGE_KEY = "dpb_projects_v1";
-const AUTOSAVE_KEY = "dpb_autosave_v1";
-const LANG_KEY = "dpb_language_v1";
+const STORAGE_KEY =
+"dpb_projects_v2";
+
+const AUTOSAVE_KEY =
+"dpb_autosave_v2";
+
+const LANG_KEY =
+"dpb_language_v2";
 
 
-/* =========================
-   STATE
-========================= */
-
-let currentLang = localStorage.getItem(LANG_KEY) || "ar";
+let currentLang =
+localStorage.getItem(LANG_KEY) || "ar";
 
 let generatedProducts = [];
+
 let selectedProductIndex = -1;
+
 let selectedProduct = null;
+
 let fullProductText = "";
 
-let autoSaveTimer = null;
+let autoTimer = null;
+
+let imageData = "";
 
 
-/* =========================
-   TRANSLATIONS
-========================= */
+const T = {
 
-const translations = {
+ar:{
 
-    ar: {
+saved:"مشاريعي المحفوظة",
 
-        savedProjects:"مشاريعي المحفوظة",
+heroTitle:
+"أنشئ منتجك الرقمي بالذكاء الاصطناعي",
 
-        heroTitle:"أنشئ منتجك الرقمي",
+heroText:
+"أنشئ أفكار منتجات رقمية، وابنِ منتجًا كاملًا، واكتب خطة تسويق باستخدام الذكاء الاصطناعي.",
 
-        heroText:
-        "أداة بسيطة تساعدك على إنشاء أفكار للمنتجات الرقمية، وبناء منتج كامل وخطة تسويق من هاتفك.",
+generator:
+"مولّد المنتجات",
 
-        generatorTitle:"مولّد المنتجات",
+niche:
+"المجال / Niche",
 
-        nicheLabel:"المجال / Niche",
+type:
+"نوع المنتج",
 
-        typeLabel:"نوع المنتج",
+imageLabel:
+"صورة اختيارية لإرسالها إلى الذكاء الاصطناعي",
 
-        generateIdeas:"✨ إنشاء 5 أفكار للمنتجات",
+generate:
+"إنشاء 5 أفكار بالذكاء الاصطناعي",
 
-        ideasTitle:"أفكار المنتجات",
+ideas:
+"أفكار المنتجات",
 
-        downloadAll:"تحميل كل الأفكار",
+downloadAll:
+"تحميل الكل",
 
-        emptyIdeas:"اكتب مجالك ثم اضغط Generate لبدء العمل.",
+empty:
+"اكتب المجال ثم اضغط إنشاء.",
 
-        builderTitle:"Product Builder",
+goal:
+"هدف المنتج",
 
-        goalTitle:"🎯 هدف المنتج",
+structure:
+"هيكل المنتج",
 
-        structureTitle:"🧱 هيكل المنتج",
+bonus:
+"المكافآت",
 
-        bonusTitle:"🎁 أفكار المكافآت",
+price:
+"السعر",
 
-        priceTitle:"💰 السعر المقترح",
+marketing:
+"التسويق",
 
-        marketingTitle:"📣 خطة التسويق",
+copy:
+"نص البيع",
 
-        copyTitle:"✍️ مخطط المحتوى",
+save:
+"حفظ",
 
-        saveProject:"حفظ المشروع",
+copyBlueprint:
+"نسخ Blueprint",
 
-        copyBlueprint:"نسخ Blueprint",
+downloadBlueprint:
+"تحميل Blueprint",
 
-        downloadBlueprint:"تحميل Blueprint",
+full:
+"إنشاء المنتج الكامل",
 
-        generateFull:"✨ إنشاء المنتج الكامل",
+fullTitle:
+"المنتج الكامل",
 
-        backIdeas:"رجوع",
+copyFull:
+"نسخ",
 
-        fullProductTitle:"المنتج الكامل",
+downloadFull:
+"تحميل",
 
-        copyFull:"نسخ المنتج الكامل",
+footer:
+"يعمل بواسطة الذكاء الاصطناعي"
 
-        downloadFull:"تحميل المنتج الكامل",
+},
 
-        footerText:"يعمل بدون سيرفر وبدون تكلفة"
+en:{
 
-    },
+saved:
+"My Saved Projects",
 
-    en: {
+heroTitle:
+"Build Your Digital Product with AI",
 
-        savedProjects:"My Saved Projects",
+heroText:
+"Generate product ideas, build a complete product and create marketing content with AI.",
 
-        heroTitle:"Build Your Digital Product",
+generator:
+"Product Generator",
 
-        heroText:
-        "A simple tool that helps you generate digital product ideas, build a complete product and create a marketing plan from your phone.",
+niche:
+"Niche",
 
-        generatorTitle:"Product Generator",
+type:
+"Product Type",
 
-        nicheLabel:"Niche",
+imageLabel:
+"Optional image to send to AI",
 
-        typeLabel:"Product Type",
+generate:
+"Generate 5 AI Ideas",
 
-        generateIdeas:"✨ Generate 5 Product Ideas",
+ideas:
+"Product Ideas",
 
-        ideasTitle:"Product Ideas",
+downloadAll:
+"Download All",
 
-        downloadAll:"Download All Ideas",
+empty:
+"Enter a niche and press Generate.",
 
-        emptyIdeas:"Enter your niche and press Generate to start.",
+goal:
+"Product Goal",
 
-        builderTitle:"Product Builder",
+structure:
+"Product Structure",
 
-        goalTitle:"🎯 Product Goal",
+bonus:
+"Bonuses",
 
-        structureTitle:"🧱 Product Structure",
+price:
+"Price",
 
-        bonusTitle:"🎁 Bonus Ideas",
+marketing:
+"Marketing",
 
-        priceTitle:"💰 Suggested Price",
+copy:
+"Sales Copy",
 
-        marketingTitle:"📣 Marketing Plan",
+save:
+"Save",
 
-        copyTitle:"✍️ Copy Blueprint",
+copyBlueprint:
+"Copy Blueprint",
 
-        saveProject:"Save Project",
+downloadBlueprint:
+"Download Blueprint",
 
-        copyBlueprint:"Copy Blueprint",
+full:
+"Generate Full Product",
 
-        downloadBlueprint:"Download Blueprint",
+fullTitle:
+"Full Product",
 
-        generateFull:"✨ Generate Full Product",
+copyFull:
+"Copy",
 
-        backIdeas:"Back",
+downloadFull:
+"Download",
 
-        fullProductTitle:"Full Product",
+footer:
+"Powered by AI"
 
-        copyFull:"Copy Full Product",
-
-        downloadFull:"Download Full Product",
-
-        footerText:"Works without a server and costs nothing"
-
-    }
+}
 
 };
 
 
-/* =========================
-   TEMPLATE DATA
-========================= */
+function toast(message){
 
-const templateData = {
+const e =
+document.getElementById("toast");
 
-    ar: {
+e.textContent = message;
 
-        ebook: [
+e.classList.add("show");
 
-            {
-                title:"دليل المبتدئ الكامل في {niche}",
-                description:"كتاب إلكتروني عملي يساعد المبتدئين على فهم {niche} والبدء بطريقة بسيطة.",
-                goal:"تعليم المبتدئ أساسيات {niche} وتحويل المعرفة إلى خطوات عملية.",
-                structure:"مقدمة + أساسيات {niche} + 8 فصول عملية + أخطاء شائعة + خطة 30 يومًا.",
-                bonus:"قائمة أدوات مجانية + Checklist + أفكار محتوى.",
-                price:"$7 – $19",
-                marketing:"TikTok Shorts + Instagram Reels + محتوى تعليمي قصير.",
-                copy:"ابدأ من الصفر وتعلم {niche} خطوة بخطوة بدون تعقيد."
-            },
-
-            {
-                title:"30 فكرة للنجاح في {niche}",
-                description:"مجموعة أفكار عملية يمكن تطبيقها خلال 30 يومًا.",
-                goal:"مساعدة القارئ على الحصول على أفكار واضحة قابلة للتطبيق.",
-                structure:"30 فكرة + شرح كل فكرة + مثال + Action Step.",
-                bonus:"خطة تنفيذ أسبوعية.",
-                price:"$5 – $12",
-                marketing:"فيديو يومي يعرض فكرة واحدة.",
-                copy:"ماذا لو بدأت بتطبيق فكرة واحدة فقط كل يوم؟"
-            },
-
-            {
-                title:"خطة {niche} من الصفر",
-                description:"خطة عملية للمبتدئين للانتقال من عدم المعرفة إلى أول نتيجة.",
-                goal:"تقليل الحيرة وتوفير مسار واضح.",
-                structure:"المرحلة 1 → المرحلة 2 → المرحلة 3 → التنفيذ.",
-                bonus:"جدول متابعة أسبوعي.",
-                price:"$9 – $19",
-                marketing:"محتوى Before/After + قصص وتجارب.",
-                copy:"لا تحتاج إلى معرفة كل شيء، تحتاج فقط إلى الخطوة التالية."
-            },
-
-            {
-                title:"{niche} Starter Kit",
-                description:"حزمة بداية تحتوي على الموارد الأساسية للانطلاق.",
-                goal:"تجميع كل ما يحتاجه المبتدئ في مكان واحد.",
-                structure:"Guide + Templates + Checklists + Resources.",
-                bonus:"قائمة أدوات مجانية.",
-                price:"$12 – $25",
-                marketing:"عرض محتويات الحزمة في فيديوهات قصيرة.",
-                copy:"كل ما تحتاجه للبدء في {niche} داخل حزمة واحدة."
-            },
-
-            {
-                title:"أسرار {niche} للمبتدئين",
-                description:"دليل مختصر يشرح أهم المفاهيم والنصائح.",
-                goal:"اختصار وقت التعلم.",
-                structure:"10 أسرار + أمثلة + أخطاء يجب تجنبها.",
-                bonus:"Quick Reference Sheet.",
-                price:"$5 – $15",
-                marketing:"مقاطع قصيرة بعنوان: Secret #1.",
-                copy:"5 أشياء تمنيت أن أعرفها عندما بدأت."
-            }
-
-        ],
-
-        template: [
-
-            {
-                title:"حزمة قوالب {niche}",
-                description:"مجموعة قوالب جاهزة لتوفير الوقت.",
-                goal:"مساعدة المستخدم على إنشاء المحتوى بسرعة.",
-                structure:"20 قالبًا + تعليمات الاستخدام.",
-                bonus:"10 أفكار إضافية.",
-                price:"$7 – $17",
-                marketing:"عرض القالب قبل وبعد الاستخدام.",
-                copy:"لا تبدأ من صفحة فارغة مرة أخرى."
-            },
-
-            {
-                title:"Social Media Templates for {niche}",
-                description:"قوالب منشورات وفيديوهات جاهزة.",
-                goal:"تسريع عملية إنشاء المحتوى.",
-                structure:"Posts + Captions + Hooks + CTAs.",
-                bonus:"30 Hook جاهز.",
-                price:"$9 – $19",
-                marketing:"Reels وTikTok تعرض القوالب.",
-                copy:"أنشئ محتوى أفضل في دقائق."
-            },
-
-            {
-                title:"Creator Template Pack",
-                description:"حزمة عملية لصناع المحتوى.",
-                goal:"تنظيم عملية صناعة المحتوى.",
-                structure:"Content Planner + Scripts + Templates.",
-                bonus:"Weekly Planner.",
-                price:"$12 – $25",
-                marketing:"شرح استخدام قالب واحد يوميًا.",
-                copy:"حوّل أفكارك إلى محتوى منظم."
-            },
-
-            {
-                title:"Ultimate {niche} Template Kit",
-                description:"حزمة كبيرة تحتوي على مجموعة قوالب متكاملة.",
-                goal:"توفير الوقت والجهد.",
-                structure:"50+ Templates.",
-                bonus:"Mini Guide.",
-                price:"$15 – $29",
-                marketing:"فيديو يستعرض جميع الملفات.",
-                copy:"50+ قالب جاهز لتبدأ الآن."
-            },
-
-            {
-                title:"Beginner Templates Pack",
-                description:"قوالب سهلة للمبتدئين.",
-                goal:"جعل البداية أسهل.",
-                structure:"10 Templates + Examples.",
-                bonus:"Checklist.",
-                price:"$5 – $12",
-                marketing:"محتوى تعليمي قصير.",
-                copy:"ابدأ بسهولة باستخدام قوالب جاهزة."
-            }
-
-        ],
-
-        checklist: [
-
-            {
-                title:"Ultimate {niche} Checklist",
-                description:"قائمة تحقق خطوة بخطوة.",
-                goal:"منع نسيان الخطوات المهمة.",
-                structure:"Before → During → After.",
-                bonus:"Printable Version.",
-                price:"$3 – $9",
-                marketing:"فيديو يعرض خطوات Checklist.",
-                copy:"لا تنسَ أي خطوة مهمة مرة أخرى."
-            },
-
-            {
-                title:"{niche} Launch Checklist",
-                description:"قائمة تحقق لإطلاق مشروعك.",
-                goal:"تنظيم عملية الإطلاق.",
-                structure:"Preparation + Launch + Follow-up.",
-                bonus:"Launch Calendar.",
-                price:"$5 – $12",
-                marketing:"Countdown content.",
-                copy:"جاهز للإطلاق؟ استخدم هذه القائمة."
-            },
-
-            {
-                title:"30-Day {niche} Checklist",
-                description:"قائمة يومية لمدة 30 يومًا.",
-                goal:"بناء عادة وتنفيذ مستمر.",
-                structure:"Day 1 → Day 30.",
-                bonus:"Progress Tracker.",
-                price:"$5 – $15",
-                marketing:"فيديو يومي.",
-                copy:"ماذا تستطيع تحقيقه خلال 30 يومًا؟"
-            },
-
-            {
-                title:"Beginner {niche} Checklist",
-                description:"أبسط Checklist للمبتدئين.",
-                goal:"إزالة الحيرة.",
-                structure:"10 خطوات أساسية.",
-                bonus:"Quick Guide.",
-                price:"$3 – $7",
-                marketing:"Short educational videos.",
-                copy:"10 خطوات فقط للبدء."
-            },
-
-            {
-                title:"Pro {niche} Checklist",
-                description:"Checklist أكثر تقدمًا.",
-                goal:"تحسين النتائج.",
-                structure:"Advanced workflow.",
-                bonus:"Pro Tips.",
-                price:"$7 – $15",
-                marketing:"Educational content.",
-                copy:"انتقل من مبتدئ إلى مستوى أكثر احترافية."
-            }
-
-        ],
-
-        prompts: [
-
-            {
-                title:"50 AI Prompts for {niche}",
-                description:"50 Prompt جاهز لاستخدام أدوات الذكاء الاصطناعي.",
-                goal:"توفير الوقت والحصول على نتائج أفضل.",
-                structure:"50 Prompts + Examples.",
-                bonus:"Prompt Cheat Sheet.",
-                price:"$5 – $15",
-                marketing:"اعرض Prompt ونتيجته في فيديو.",
-                copy:"توقف عن كتابة Prompts من الصفر."
-            },
-
-            {
-                title:"100 Content Prompts for {niche}",
-                description:"100 فكرة Prompt لإنشاء المحتوى.",
-                goal:"منع مشكلة نفاد الأفكار.",
-                structure:"Hooks + Posts + Videos + Captions.",
-                bonus:"Content Calendar.",
-                price:"$9 – $19",
-                marketing:"Prompt of the day.",
-                copy:"100 فكرة محتوى جاهزة في مكان واحد."
-            },
-
-            {
-                title:"AI Creator Prompt Pack",
-                description:"Prompts لصناع المحتوى.",
-                goal:"تسريع إنشاء المحتوى.",
-                structure:"Research + Writing + Ideas + Marketing.",
-                bonus:"Workflow.",
-                price:"$12 – $25",
-                marketing:"اعرض النتائج قبل وبعد.",
-                copy:"دع الذكاء الاصطناعي يساعدك على إنشاء المحتوى."
-            },
-
-            {
-                title:"{niche} ChatGPT Prompt Kit",
-                description:"حزمة Prompts مخصصة للمجال.",
-                goal:"تحسين استخدام ChatGPT.",
-                structure:"50+ Prompts.",
-                bonus:"Prompt Formula.",
-                price:"$7 – $19",
-                marketing:"Short tutorials.",
-                copy:"احصل على نتائج أفضل باستخدام Prompts أفضل."
-            },
-
-            {
-                title:"Beginner AI Prompt Guide",
-                description:"دليل للمبتدئين في كتابة Prompts.",
-                goal:"تعليم أساسيات Prompting.",
-                structure:"Basics + Formula + Examples.",
-                bonus:"20 Bonus Prompts.",
-                price:"$5 – $15",
-                marketing:"Educational Shorts.",
-                copy:"تعلم كيف تتحدث مع AI بطريقة أفضل."
-            }
-
-        ],
-
-        course: [
-
-            {
-                title:"{niche} Mini Course",
-                description:"دورة قصيرة للمبتدئين.",
-                goal:"تعليم الأساسيات خلال وقت قصير.",
-                structure:"5 Modules + Exercises.",
-                bonus:"Workbook.",
-                price:"$15 – $39",
-                marketing:"Free lesson clips.",
-                copy:"تعلم {niche} بطريقة بسيطة وعملية."
-            },
-
-            {
-                title:"30-Day {niche} Course",
-                description:"برنامج تدريبي لمدة 30 يومًا.",
-                goal:"تحقيق نتيجة عملية.",
-                structure:"30 Lessons.",
-                bonus:"Tracking Sheet.",
-                price:"$19 – $49",
-                marketing:"Daily educational content.",
-                copy:"30 يومًا يمكن أن تغير طريقة عملك."
-            },
-
-            {
-                title:"{niche} From Zero",
-                description:"دورة من المستوى صفر.",
-                goal:"مساعدة المبتدئ على البدء.",
-                structure:"Beginner → Intermediate.",
-                bonus:"Resource Pack.",
-                price:"$15 – $39",
-                marketing:"Beginner tips.",
-                copy:"ابدأ من الصفر بدون تعقيد."
-            },
-
-            {
-                title:"Fast Track {niche}",
-                description:"دورة سريعة تركز على النتائج.",
-                goal:"اختصار وقت التعلم.",
-                structure:"Quick Lessons + Tasks.",
-                bonus:"Cheat Sheet.",
-                price:"$12 – $29",
-                marketing:"Result-based videos.",
-                copy:"تعلم الأساسيات بسرعة وابدأ بالتطبيق."
-            },
-
-            {
-                title:"Complete {niche} Starter Course",
-                description:"دورة بداية متكاملة.",
-                goal:"إعطاء المبتدئ أساسًا قويًا.",
-                structure:"8 Modules.",
-                bonus:"Templates + Checklist.",
-                price:"$19 – $49",
-                marketing:"Course preview.",
-                copy:"كل ما تحتاجه للبدء في دورة واحدة."
-            }
-
-        ]
-
-    },
-
-
-    en: {
-
-        ebook: [
-
-            {
-                title:"The Complete Beginner Guide to {niche}",
-                description:"A practical ebook that helps beginners understand {niche} and start step by step.",
-                goal:"Teach beginners the basics of {niche} and turn knowledge into action.",
-                structure:"Introduction + Basics + 8 Practical Chapters + Common Mistakes + 30-Day Plan.",
-                bonus:"Free Tools List + Checklist + Content Ideas.",
-                price:"$7 – $19",
-                marketing:"TikTok Shorts + Instagram Reels + Educational Content.",
-                copy:"Start from zero and learn {niche} step by step."
-            },
-
-            {
-                title:"30 Ideas to Succeed in {niche}",
-                description:"A collection of practical ideas that can be implemented over 30 days.",
-                goal:"Give readers clear and actionable ideas.",
-                structure:"30 Ideas + Explanation + Example + Action Step.",
-                bonus:"Weekly Action Plan.",
-                price:"$5 – $12",
-                marketing:"One short video showing one idea every day.",
-                copy:"What if you implemented just one idea every day?"
-            },
-
-            {
-                title:"The {niche} Zero-to-Start Plan",
-                description:"A practical roadmap from zero knowledge to your first result.",
-                goal:"Remove confusion and provide a clear path.",
-                structure:"Stage 1 → Stage 2 → Stage 3 → Execution.",
-                bonus:"Weekly Tracking Sheet.",
-                price:"$9 – $19",
-                marketing:"Before/After Content + Stories.",
-                copy:"You don't need to know everything. You only need the next step."
-            },
-
-            {
-                title:"{niche} Starter Kit",
-                description:"A complete starter bundle containing essential resources.",
-                goal:"Give beginners everything they need in one place.",
-                structure:"Guide + Templates + Checklists + Resources.",
-                bonus:"Free Tools List.",
-                price:"$12 – $25",
-                marketing:"Short videos showing what is inside.",
-                copy:"Everything you need to start {niche} in one simple kit."
-            },
-
-            {
-                title:"{niche} Secrets for Beginners",
-                description:"A short guide covering important concepts and tips.",
-                goal:"Save the reader time.",
-                structure:"10 Secrets + Examples + Mistakes to Avoid.",
-                bonus:"Quick Reference Sheet.",
-                price:"$5 – $15",
-                marketing:"Short videos titled Secret #1, Secret #2...",
-                copy:"5 things I wish I knew when I started."
-            }
-
-        ],
-
-        template: [
-
-            {
-                title:"{niche} Template Pack",
-                description:"Ready-to-use templates designed to save time.",
-                goal:"Help users create content faster.",
-                structure:"20 Templates + Usage Instructions.",
-                bonus:"10 Extra Ideas.",
-                price:"$7 – $17",
-                marketing:"Show before and after using a template.",
-                copy:"Never start from a blank page again."
-            },
-
-            {
-                title:"Social Media Templates for {niche}",
-                description:"Ready-made templates for posts and videos.",
-                goal:"Speed up content creation.",
-                structure:"Posts + Captions + Hooks + CTAs.",
-                bonus:"30 Ready Hooks.",
-                price:"$9 – $19",
-                marketing:"Reels and TikTok showing the templates.",
-                copy:"Create better content in minutes."
-            },
-
-            {
-                title:"Creator Template Pack",
-                description:"A practical pack for content creators.",
-                goal:"Organize the content creation process.",
-                structure:"Content Planner + Scripts + Templates.",
-                bonus:"Weekly Planner.",
-                price:"$12 – $25",
-                marketing:"Show one template every day.",
-                copy:"Turn your ideas into organized content."
-            },
-
-            {
-                title:"Ultimate {niche} Template Kit",
-                description:"A large collection of ready-to-use templates.",
-                goal:"Save time and effort.",
-                structure:"50+ Templates.",
-                bonus:"Mini Guide.",
-                price:"$15 – $29",
-                marketing:"Video walkthrough of the files.",
-                copy:"50+ ready-to-use templates to get started."
-            },
-
-            {
-                title:"Beginner Templates Pack",
-                description:"Simple templates designed for beginners.",
-                goal:"Make starting easier.",
-                structure:"10 Templates + Examples.",
-                bonus:"Checklist.",
-                price:"$5 – $12",
-                marketing:"Short educational content.",
-                copy:"Start easily with ready-made templates."
-            }
-
-        ],
-
-        checklist: [
-
-            {
-                title:"Ultimate {niche} Checklist",
-                description:"A step-by-step checklist.",
-                goal:"Make sure no important step is missed.",
-                structure:"Before → During → After.",
-                bonus:"Printable Version.",
-                price:"$3 – $9",
-                marketing:"Video showing each checklist step.",
-                copy:"Never miss an important step again."
-            },
-
-            {
-                title:"{niche} Launch Checklist",
-                description:"A checklist for launching your project.",
-                goal:"Organize the launch process.",
-                structure:"Preparation + Launch + Follow-up.",
-                bonus:"Launch Calendar.",
-                price:"$5 – $12",
-                marketing:"Countdown content.",
-                copy:"Ready to launch? Use this checklist."
-            },
-
-            {
-                title:"30-Day {niche} Checklist",
-                description:"A daily checklist for 30 days.",
-                goal:"Build consistency and execution.",
-                structure:"Day 1 → Day 30.",
-                bonus:"Progress Tracker.",
-                price:"$5 – $15",
-                marketing:"Daily short videos.",
-                copy:"What can you achieve in 30 days?"
-            },
-
-            {
-                title:"Beginner {niche} Checklist",
-                description:"The simplest checklist for beginners.",
-                goal:"Remove confusion.",
-                structure:"10 Essential Steps.",
-                bonus:"Quick Guide.",
-                price:"$3 – $7",
-                marketing:"Short educational videos.",
-                copy:"Just 10 steps to get started."
-            },
-
-            {
-                title:"Pro {niche} Checklist",
-                description:"A more advanced checklist.",
-                goal:"Improve your results.",
-                structure:"Advanced Workflow.",
-                bonus:"Pro Tips.",
-                price:"$7 – $15",
-                marketing:"Educational content.",
-                copy:"Move from beginner to a more professional level."
-            }
-
-        ],
-
-        prompts: [
-
-            {
-                title:"50 AI Prompts for {niche}",
-                description:"50 ready-to-use AI prompts.",
-                goal:"Save time and get better results.",
-                structure:"50 Prompts + Examples.",
-                bonus:"Prompt Cheat Sheet.",
-                price:"$5 – $15",
-                marketing:"Show a prompt and its result in short videos.",
-                copy:"Stop writing prompts from scratch."
-            },
-
-            {
-                title:"100 Content Prompts for {niche}",
-                description:"100 prompts for content creation.",
-                goal:"Never run out of content ideas.",
-                structure:"Hooks + Posts + Videos + Captions.",
-                bonus:"Content Calendar.",
-                price:"$9 – $19",
-                marketing:"Prompt of the Day.",
-                copy:"100 ready-to-use content ideas in one place."
-            },
-
-            {
-                title:"AI Creator Prompt Pack",
-                description:"Prompts designed for content creators.",
-                goal:"Speed up content creation.",
-                structure:"Research + Writing + Ideas + Marketing.",
-                bonus:"AI Workflow.",
-                price:"$12 – $25",
-                marketing:"Show before/after results.",
-                copy:"Let AI help you create better content."
-            },
-
-            {
-                title:"{niche} ChatGPT Prompt Kit",
-                description:"A niche-specific ChatGPT prompt collection.",
-                goal:"Improve the way you use ChatGPT.",
-                structure:"50+ Prompts.",
-                bonus:"Prompt Formula.",
-                price:"$7 – $19",
-                marketing:"Short tutorials.",
-                copy:"Get better AI results with better prompts."
-            },
-
-            {
-                title:"Beginner AI Prompt Guide",
-                description:"A simple guide to writing better prompts.",
-                goal:"Teach the basics of prompting.",
-                structure:"Basics + Formula + Examples.",
-                bonus:"20 Bonus Prompts.",
-                price:"$5 – $15",
-                marketing:"Educational Shorts.",
-                copy:"Learn how to communicate with AI better."
-            }
-
-        ],
-
-        course: [
-
-            {
-                title:"{niche} Mini Course",
-                description:"A short beginner-friendly course.",
-                goal:"Teach the basics in a short amount of time.",
-                structure:"5 Modules + Exercises.",
-                bonus:"Workbook.",
-                price:"$15 – $39",
-                marketing:"Free lesson clips.",
-                copy:"Learn {niche} in a simple and practical way."
-            },
-
-            {
-                title:"30-Day {niche} Course",
-                description:"A 30-day training program.",
-                goal:"Help students achieve a practical result.",
-                structure:"30 Lessons.",
-                bonus:"Progress Tracker.",
-                price:"$19 – $49",
-                marketing:"Daily educational content.",
-                copy:"30 days can change the way you work."
-            },
-
-            {
-                title:"{niche} From Zero",
-                description:"A course designed for complete beginners.",
-                goal:"Help beginners get started.",
-                structure:"Beginner → Intermediate.",
-                bonus:"Resource Pack.",
-                price:"$15 – $39",
-                marketing:"Beginner tips.",
-                copy:"Start from zero without the confusion."
-            },
-
-            {
-                title:"Fast Track {niche}",
-                description:"A fast course focused on practical results.",
-                goal:"Reduce learning time.",
-                structure:"Quick Lessons + Tasks.",
-                bonus:"Cheat Sheet.",
-                price:"$12 – $29",
-                marketing:"Result-based videos.",
-                copy:"Learn the basics quickly and start taking action."
-            },
-
-            {
-                title:"Complete {niche} Starter Course",
-                description:"A complete beginner starter course.",
-                goal:"Build a strong foundation.",
-                structure:"8 Modules.",
-                bonus:"Templates + Checklist.",
-                price:"$19 – $49",
-                marketing:"Course preview videos.",
-                copy:"Everything you need to start in one course."
-            }
-
-        ]
-
-    }
-
-};
-
-
-/* =========================
-   HELPERS
-========================= */
-
-function escapeHTML(text){
-
-    return String(text || "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
-
-function replaceNiche(text,niche){
-
-    return text.replace(/\{niche\}/gi,niche || "your niche");
-
-}
-
-
-function showToast(message){
-
-    const toast=document.getElementById("toast");
-
-    toast.textContent=message;
-
-    toast.classList.add("show");
-
-    setTimeout(()=>{
-        toast.classList.remove("show");
-    },2200);
+setTimeout(
+()=>e.classList.remove("show"),
+2500
+);
 
 }
 
 
 function copyText(text){
 
-    if(navigator.clipboard){
+navigator.clipboard
+?.writeText(text)
 
-        navigator.clipboard.writeText(text)
-        .then(()=>showToast(currentLang==="ar" ? "تم النسخ ✅" : "Copied ✅"))
-        .catch(()=>fallbackCopy(text));
+.then(
+()=>
+toast(
+currentLang==="ar"
+?
+"تم النسخ ✅"
+:
+"Copied ✅"
+)
+)
 
-    }else{
+.catch(()=>{
 
-        fallbackCopy(text);
+const a =
+document.createElement("textarea");
 
-    }
+a.value=text;
 
-}
+document.body.appendChild(a);
 
+a.select();
 
-function fallbackCopy(text){
+document.execCommand("copy");
 
-    const area=document.createElement("textarea");
+a.remove();
 
-    area.value=text;
+toast("Copied ✅");
 
-    document.body.appendChild(area);
-
-    area.select();
-
-    document.execCommand("copy");
-
-    area.remove();
-
-    showToast(currentLang==="ar" ? "تم النسخ ✅" : "Copied ✅");
-
-}
-
-
-function downloadText(filename,text){
-
-    const blob=new Blob([text],{
-        type:"text/plain;charset=utf-8"
-    });
-
-    const url=URL.createObjectURL(blob);
-
-    const a=document.createElement("a");
-
-    a.href=url;
-    a.download=filename;
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    a.remove();
-
-    URL.revokeObjectURL(url);
+});
 
 }
 
 
-/* =========================
-   LANGUAGE
-========================= */
+function downloadText(name,text){
+
+const u =
+URL.createObjectURL(
+new Blob(
+[text],
+{
+type:
+"text/plain;charset=utf-8"
+}
+)
+);
+
+const a =
+document.createElement("a");
+
+a.href=u;
+
+a.download=name;
+
+a.click();
+
+URL.revokeObjectURL(u);
+
+}
+
+
+function esc(s){
+
+return String(s ?? "")
+.replace(
+/[&<>"']/g,
+m=>({
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+
+}[m])
+);
+
+}
+
 
 function applyLanguage(){
 
-    document.documentElement.lang=currentLang;
+document.documentElement.lang =
+currentLang;
 
-    document.documentElement.dir=currentLang==="ar" ? "rtl" : "ltr";
+document.documentElement.dir =
+currentLang==="ar"
+?
+"rtl"
+:
+"ltr";
 
-    document.querySelectorAll("[data-i18n]").forEach(el=>{
 
-        const key=el.getAttribute("data-i18n");
+document
+.querySelectorAll("[data-i18n]")
+.forEach(e=>{
 
-        if(translations[currentLang][key]){
+const k =
+e.dataset.i18n;
 
-            el.textContent=translations[currentLang][key];
+if(T[currentLang][k])
+e.textContent =
+T[currentLang][k];
 
-        }
+});
 
-    });
 
-    document.getElementById("languageBtn").textContent =
-        currentLang==="ar" ? "🌐 English" : "🌐 العربية";
+document.getElementById(
+"languageBtn"
+).textContent =
+currentLang==="ar"
+?
+"🌐 English"
+:
+"🌐 العربية";
 
 }
 
 
 function toggleLanguage(){
 
-    currentLang=currentLang==="ar" ? "en" : "ar";
+currentLang =
+currentLang==="ar"
+?
+"en"
+:
+"ar";
 
-    localStorage.setItem(LANG_KEY,currentLang);
+localStorage.setItem(
+LANG_KEY,
+currentLang
+);
 
-    applyLanguage();
+applyLanguage();
 
-    const niche=document.getElementById("niche").value.trim();
-
-    if(niche && generatedProducts.length){
-
-        const oldIndex=selectedProductIndex;
-
-        generateProducts(false);
-
-        if(oldIndex>=0 && oldIndex<generatedProducts.length){
-
-            createProduct(oldIndex,false);
-
-        }
-
-    }
+if(generatedProducts.length)
+renderProducts();
 
 }
 
 
-/* =========================
-   GENERATE PRODUCTS
-========================= */
+function previewImage(ev){
+
+const f =
+ev.target.files[0];
+
+if(!f){
+
+imageData="";
+
+return;
+
+}
 
 
-async function generateProducts(scroll=true){
+const r =
+new FileReader();
 
-    const niche=document.getElementById("niche").value.trim();
-    const type=document.getElementById("type").value;
+r.onload=()=>{
 
-    if(!niche){
-        showToast(
-            currentLang==="ar"
-            ? "اكتب المجال أولاً ✍️"
-            : "Enter a niche first ✍️"
-        );
-        return;
-    }
+imageData =
+r.result;
 
-    showToast(
-        currentLang==="ar"
-        ? "جاري إنشاء الأفكار بالذكاء الاصطناعي... 🤖"
-        : "AI is generating your ideas... 🤖"
-    );
+const p =
+document.getElementById(
+"imagePreview"
+);
 
-    const prompt=`
-Create 5 different digital product ideas.
+p.src=imageData;
 
-Niche: ${niche}
-Product type: ${type}
-Language: ${currentLang==="ar" ? "Arabic" : "English"}
+p.style.display =
+"block";
 
-Return ONLY valid JSON.
-The JSON must be an array of exactly 5 objects.
+};
 
-Each object must contain:
+r.readAsDataURL(f);
+
+}
+
+
+async function callAI(prompt){
+
+const body={
+prompt:prompt
+};
+
+
+if(imageData)
+body.image=imageData;
+
+
+const response =
+await fetch(
+WORKER_URL,
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:
+JSON.stringify(body)
+
+}
+);
+
+
+const data =
+await response.json();
+
+
+if(
+!response.ok ||
+!data.success
+){
+
+throw new Error(
+data.error ||
+"AI request failed"
+);
+
+}
+
+
+return data.result || "";
+
+}
+
+
+async function generateProducts(
+scroll=true
+){
+
+const niche =
+document
+.getElementById("niche")
+.value
+.trim();
+
+const type =
+document
+.getElementById("type")
+.value;
+
+
+if(!niche){
+
+toast(
+currentLang==="ar"
+?
+"اكتب المجال أولاً ✍️"
+:
+"Enter a niche first ✍️"
+);
+
+return;
+
+}
+
+
+toast(
+currentLang==="ar"
+?
+"جاري إنشاء 5 أفكار بالذكاء الاصطناعي... 🤖"
+:
+"AI is generating 5 ideas... 🤖"
+);
+
+
+const prompt = `
+
+Create exactly 5 practical digital product ideas for beginners.
+
+Niche:
+${niche}
+
+Product type:
+${type}
+
+Language:
+${currentLang==="ar"?"Arabic":"English"}
+
+Return ONLY valid JSON array.
+
+Do not use markdown.
+
+Do not use code fences.
+
+Each object MUST have exactly these fields:
+
 title
 description
 goal
@@ -1559,1140 +1255,1024 @@ price
 marketing
 copy
 
-Make every idea practical, specific and useful for beginners.
-Do not include markdown.
+Make all 5 ideas different,
+specific, practical and useful.
+
 `;
 
-    try{
 
-        const response=await fetch(
-            "https://ai-product-ai.nacer-na95.workers.dev",
-            {
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json"
-                },
-                body:JSON.stringify({
-                    prompt:prompt
-                })
-            }
-        );
+try{
 
-        const data=await response.json();
+let text =
+await callAI(prompt);
 
-        if(!response.ok || !data.success){
 
-            throw new Error(
-                data.error || "AI request failed"
-            );
+text =
+text
+.replace(
+/^```(?:json)?/i,
+""
+)
+.replace(
+/```$/,
+""
+)
+.trim();
 
-        }
 
-        let text=data.result.trim();
+generatedProducts =
+JSON.parse(text);
 
-        text=text
-            .replace(/^```json/i,"")
-            .replace(/^```/i,"")
-            .replace(/```$/i,"")
-            .trim();
 
-        generatedProducts=JSON.parse(text);
+if(
+!Array.isArray(
+generatedProducts
+) ||
+generatedProducts.length !== 5
+){
 
-        if(
-            !Array.isArray(generatedProducts) ||
-            generatedProducts.length!==5
-        ){
-            throw new Error("AI returned an invalid result.");
-        }
-
-        selectedProductIndex=-1;
-        selectedProduct=null;
-        fullProductText="";
-
-        document.getElementById("builder").style.display="none";
-        document.getElementById("fullProduct").style.display="none";
-
-        renderProducts();
-        autoSave();
-
-        if(scroll){
-
-            document.getElementById("results").scrollIntoView({
-                behavior:"smooth"
-            });
-
-        }
-
-        showToast(
-            currentLang==="ar"
-            ? "تم إنشاء 5 أفكار بالذكاء الاصطناعي 🤖✅"
-            : "5 AI ideas generated 🤖✅"
-        );
-
-    }catch(error){
-
-        console.error(error);
-
-        showToast(
-            currentLang==="ar"
-            ? "حدث خطأ أثناء الاتصال بالذكاء الاصطناعي ❌"
-            : "AI connection error ❌"
-        );
-
-    }
+throw new Error(
+"Invalid AI result"
+);
 
 }
+
+
+selectedProduct=null;
+
+selectedProductIndex=-1;
+
+fullProductText="";
+
+
+document.getElementById(
+"builder"
+).style.display="none";
+
+
+document.getElementById(
+"fullProduct"
+).style.display="none";
+
+
+renderProducts();
+
+autoSave();
+
+
+if(scroll){
+
+document
+.getElementById("results")
+.scrollIntoView(
+{
+behavior:"smooth"
+}
+);
+
+}
+
+
+toast(
+currentLang==="ar"
+?
+"تم إنشاء 5 أفكار بالذكاء الاصطناعي ✅"
+:
+"5 AI ideas generated ✅"
+);
+
+
+}
+
+catch(error){
+
+console.error(error);
+
+toast(
+(
+currentLang==="ar"
+?
+"خطأ في الذكاء الاصطناعي: "
+:
+"AI error: "
+)
++
+error.message
+);
+
+}
+
+}
+
 
 function renderProducts(){
 
-    const results=document.getElementById("results");
+const r =
+document.getElementById(
+"results"
+);
 
-    if(!generatedProducts.length){
 
-        results.innerHTML=`
-            <div class="empty" style="grid-column:1/-1">
-                ${escapeHTML(translations[currentLang].emptyIdeas)}
-            </div>
-        `;
+if(!generatedProducts.length){
 
-        return;
+r.innerHTML = `
 
-    }
+<div class="empty">
 
-    results.innerHTML=generatedProducts.map((product,index)=>`
+${esc(T[currentLang].empty)}
 
-        <div class="product-card">
+</div>
 
-            <h3>${index+1}. ${escapeHTML(product.title)}</h3>
+`;
 
-            <p>${escapeHTML(product.description)}</p>
-
-            <div class="actions">
-
-                <button
-                    class="btn-secondary"
-                    onclick="copyProduct(${index})"
-                >
-                    📋 ${currentLang==="ar" ? "نسخ" : "Copy"}
-                </button>
-
-                <button
-                    class="btn-secondary"
-                    onclick="downloadProduct(${index})"
-                >
-                    📥 ${currentLang==="ar" ? "تحميل" : "Download"}
-                </button>
-
-                <button
-                    class="btn"
-                    onclick="createProduct(${index})"
-                >
-                    🚀 ${currentLang==="ar" ? "إنشاء المنتج" : "Create Product"}
-                </button>
-
-            </div>
-
-        </div>
-
-    `).join("");
+return;
 
 }
 
 
-/* =========================
-   PRODUCT ACTIONS
-========================= */
+r.innerHTML =
+generatedProducts
+.map(
+(p,i)=>`
 
-function productToText(product){
+<div class="product-card">
 
-    return `
+<h3>
+${i+1}. ${esc(p.title)}
+</h3>
 
-${product.title}
+<p>
+${esc(p.description)}
+</p>
 
-${product.description}
+<div class="actions">
 
-========================
-${translations[currentLang].goalTitle}
-========================
+<button
+class="btn-secondary"
+onclick="copyProduct(${i})">
 
-${product.goal}
+📋
+${currentLang==="ar"?"نسخ":"Copy"}
 
-========================
-${translations[currentLang].structureTitle}
-========================
+</button>
 
-${product.structure}
 
-========================
-${translations[currentLang].bonusTitle}
-========================
+<button
+class="btn-secondary"
+onclick="downloadProduct(${i})">
 
-${product.bonus}
+📥
+${currentLang==="ar"?"تحميل":"Download"}
 
-========================
-${translations[currentLang].priceTitle}
-========================
+</button>
 
-${product.price}
 
-========================
-${translations[currentLang].marketingTitle}
-========================
+<button
+class="btn"
+onclick="createProduct(${i})">
 
-${product.marketing}
+🚀
+${currentLang==="ar"
+?
+"إنشاء المنتج"
+:
+"Create Product"}
 
-========================
-${translations[currentLang].copyTitle}
-========================
+</button>
 
-${product.copy}
+</div>
+
+</div>
+
+`
+)
+.join("");
+
+}
+
+
+function productToText(p){
+
+return `
+
+${p.title}
+
+${p.description}
+
+
+${T[currentLang].goal}
+
+${p.goal}
+
+
+${T[currentLang].structure}
+
+${p.structure}
+
+
+${T[currentLang].bonus}
+
+${p.bonus}
+
+
+${T[currentLang].price}
+
+${p.price}
+
+
+${T[currentLang].marketing}
+
+${p.marketing}
+
+
+${T[currentLang].copy}
+
+${p.copy}
 
 `;
 
 }
 
 
-function copyProduct(index){
+function copyProduct(i){
 
-    copyText(productToText(generatedProducts[index]));
+copyText(
+productToText(
+generatedProducts[i]
+)
+);
 
 }
 
 
-function downloadProduct(index){
+function downloadProduct(i){
 
-    const product=generatedProducts[index];
-
-    downloadText(
-        "digital-product-idea-"+(index+1)+".txt",
-        productToText(product)
-    );
+downloadText(
+"digital-product-idea-"+(i+1)+".txt",
+productToText(
+generatedProducts[i]
+)
+);
 
 }
 
 
 function downloadAll(){
 
-    if(!generatedProducts.length){
+if(!generatedProducts.length){
 
-        showToast(
-            currentLang==="ar"
-            ? "أنشئ الأفكار أولاً."
-            : "Generate the ideas first."
-        );
+toast(
+T[currentLang].empty
+);
 
-        return;
-
-    }
-
-    let text="DIGITAL PRODUCT IDEAS\n\n";
-
-    generatedProducts.forEach((product,index)=>{
-
-        text+=`========================
-${index+1}. ${product.title}
-========================
-
-${product.description}
-
-`;
-
-    });
-
-    downloadText("digital-product-ideas.txt",text);
+return;
 
 }
 
 
-/* =========================
-   BUILDER
-========================= */
+downloadText(
+"digital-product-ideas.txt",
 
-function createProduct(index,scroll=true){
+generatedProducts
+.map(
+(p,i)=>
+`#${i+1}\n${productToText(p)}`
+)
+.join(
+"\n\n====================\n\n"
+)
 
-    selectedProductIndex=index;
-
-    selectedProduct=generatedProducts[index];
-
-    document.getElementById("builder").style.display="block";
-
-    document.getElementById("fullProduct").style.display="none";
-
-    document.getElementById("selectedProductTitle").textContent=
-        selectedProduct.title;
-
-    document.getElementById("goal").textContent=
-        selectedProduct.goal;
-
-    document.getElementById("structure").textContent=
-        selectedProduct.structure;
-
-    document.getElementById("bonus").textContent=
-        selectedProduct.bonus;
-
-    document.getElementById("price").textContent=
-        selectedProduct.price;
-
-    document.getElementById("marketing").textContent=
-        selectedProduct.marketing;
-
-    document.getElementById("copy").textContent=
-        selectedProduct.copy;
-
-    autoSave();
-
-    if(scroll){
-
-        document.getElementById("builder").scrollIntoView({
-            behavior:"smooth"
-        });
-
-    }
+);
 
 }
 
 
-function getBlueprintText(){
+function createProduct(
+i,
+scroll=true
+){
 
-    if(!selectedProduct) return "";
+selectedProductIndex=i;
 
-    return productToText(selectedProduct);
+selectedProduct =
+generatedProducts[i];
+
+
+document.getElementById(
+"builder"
+).style.display="block";
+
+
+document.getElementById(
+"fullProduct"
+).style.display="none";
+
+
+document.getElementById(
+"selectedProductTitle"
+).textContent =
+selectedProduct.title;
+
+
+[
+"goal",
+"structure",
+"bonus",
+"price",
+"marketing",
+"copy"
+]
+.forEach(k=>{
+
+document.getElementById(k)
+.textContent =
+selectedProduct[k] || "";
+
+});
+
+
+autoSave();
+
+
+if(scroll){
+
+document
+.getElementById("builder")
+.scrollIntoView(
+{
+behavior:"smooth"
+}
+);
+
+}
+
+}
+
+
+function blueprint(){
+
+return selectedProduct
+?
+productToText(selectedProduct)
+:
+"";
 
 }
 
 
 function copyBlueprint(){
 
-    copyText(getBlueprintText());
+copyText(
+blueprint()
+);
 
 }
 
 
 function downloadBlueprint(){
 
-    downloadText(
-        "product-blueprint.txt",
-        getBlueprintText()
-    );
+downloadText(
+"product-blueprint.txt",
+blueprint()
+);
 
 }
 
 
-function closeBuilder(){
+async function generateFullProduct(){
 
-    document.getElementById("builder").style.display="none";
+if(!selectedProduct){
+
+toast(
+currentLang==="ar"
+?
+"اختر منتجًا أولاً"
+:
+"Select a product first"
+);
+
+return;
 
 }
 
 
-/* =========================
-   FULL PRODUCT
-========================= */
+const niche =
+document
+.getElementById("niche")
+.value
+.trim();
 
-function generateFullProduct(){
 
-    if(!selectedProduct){
+toast(
+currentLang==="ar"
+?
+"جاري بناء المنتج الكامل بالذكاء الاصطناعي... 🤖"
+:
+"AI is building the full product... 🤖"
+);
 
-        showToast(
-            currentLang==="ar"
-            ? "اختر منتجًا أولاً."
-            : "Select a product first."
-        );
 
-        return;
+const prompt = `
 
-    }
+Create a complete beginner-friendly digital product.
 
-    const p=selectedProduct;
+Niche:
+${niche}
 
-    const niche=document.getElementById("niche").value.trim();
+Title:
+${selectedProduct.title}
 
-    if(currentLang==="ar"){
+Description:
+${selectedProduct.description}
 
-        fullProductText=`
+Goal:
+${selectedProduct.goal}
 
-${p.title}
+Structure:
+${selectedProduct.structure}
 
-========================================
-مقدمة
-========================================
+Bonus:
+${selectedProduct.bonus}
 
-مرحبًا بك في هذا الدليل العملي حول ${niche}.
+Price:
+${selectedProduct.price}
 
-تم تصميم هذا المنتج للمبتدئين الذين يريدون البدء بطريقة بسيطة ومنظمة، دون الحاجة إلى تعقيد أو معلومات كثيرة في البداية.
+Marketing:
+${selectedProduct.marketing}
 
-الهدف هو أن تنتقل من المعرفة النظرية إلى التطبيق العملي خطوة بخطوة.
+Sales copy:
+${selectedProduct.copy}
 
-========================================
-الفصل 1: فهم ${niche}
-========================================
+Language:
+${currentLang==="ar"?"Arabic":"English"}
 
-ابدأ بفهم المفاهيم الأساسية في ${niche}.
+Write a useful and detailed product.
 
-لا تحاول تعلم كل شيء مرة واحدة.
+Include:
 
-ركز أولاً على المبادئ الأساسية، ثم ابدأ بالتطبيق.
+Introduction
 
-========================================
-الفصل 2: الأدوات الأساسية
-========================================
+8 detailed chapters
 
-استخدم الأدوات المجانية المتاحة لك.
+Practical steps
 
-اختر الأدوات البسيطة التي تساعدك على تنفيذ العمل بسرعة.
+Examples
 
-الأداة ليست أهم من طريقة استخدامها.
+Checklist
 
-========================================
-الفصل 3: اختيار هدف واضح
-========================================
+Bonus section
 
-حدد هدفًا واحدًا واضحًا.
+Marketing plan
 
-مثلاً:
+Final action plan
 
-- تعلم مهارة
-- إنشاء محتوى
-- إطلاق منتج
-- الحصول على أول عميل
+Make it professional,
+useful and easy for beginners.
 
-كلما كان الهدف واضحًا، كان التنفيذ أسهل.
-
-========================================
-الفصل 4: خطوات التنفيذ
-========================================
-
-الخطوة 1:
-حدد ما تريد تحقيقه.
-
-الخطوة 2:
-قسم الهدف إلى مهام صغيرة.
-
-الخطوة 3:
-ابدأ بأبسط مهمة.
-
-الخطوة 4:
-كرر العملية كل يوم.
-
-========================================
-الفصل 5: الأخطاء الشائعة
-========================================
-
-أكبر خطأ هو الانتظار حتى تصبح مستعدًا بشكل كامل.
-
-ابدأ بما لديك، ثم حسّن النتيجة تدريجيًا.
-
-خطأ آخر هو تغيير الخطة كل يوم.
-
-اختر مسارًا والتزم به لفترة كافية.
-
-========================================
-الفصل 6: خطة 7 أيام
-========================================
-
-اليوم 1:
-حدد هدفك.
-
-اليوم 2:
-تعلم الأساسيات.
-
-اليوم 3:
-أنشئ أول نسخة.
-
-اليوم 4:
-راجع النتيجة.
-
-اليوم 5:
-حسّن المنتج.
-
-اليوم 6:
-أنشئ محتوى للترويج.
-
-اليوم 7:
-انشر وابدأ بجمع الملاحظات.
-
-========================================
-الفصل 7: التسويق
-========================================
-
-استخدم المحتوى القصير.
-
-أنشئ فيديوهات بسيطة تقدم فائدة حقيقية.
-
-يمكنك استخدام:
-
-TikTok
-Instagram Reels
-YouTube Shorts
-
-ركز على المشكلة التي يحلها المنتج، وليس فقط على بيع المنتج.
-
-========================================
-الفصل 8: الخطوة التالية
-========================================
-
-بعد إنشاء النسخة الأولى، لا تتوقف.
-
-اجمع آراء المستخدمين.
-
-حسن المنتج.
-
-أنشئ نسخة أفضل.
-
-========================================
-BONUS
-========================================
-
-Checklist:
-
-[ ] حدد المجال
-[ ] حدد الجمهور
-[ ] حدد المشكلة
-[ ] أنشئ المنتج
-[ ] راجع المنتج
-[ ] أنشئ صفحة بيع
-[ ] أنشئ محتوى
-[ ] انشر
-[ ] اجمع الملاحظات
-[ ] حسّن المنتج
-
-========================================
-خطة التسويق
-========================================
-
-1. أنشئ 3 فيديوهات قصيرة أسبوعيًا.
-2. قدم نصائح مجانية.
-3. أظهر المشكلة والحل.
-4. ضع رابط المنتج في Bio.
-5. اختبر عدة عناوين.
-6. راقب أفضل فيديوهاتك.
-7. كرر ما ينجح.
-
-========================================
-الخلاصة
-========================================
-
-لا تنتظر الكمال.
-
-ابدأ بنسخة بسيطة من ${niche}، ثم قم بتحسينها مع الوقت.
-
-الاستمرارية أهم من البداية المثالية.
+Return plain text only.
 
 `;
 
-    }else{
 
-        fullProductText=`
+try{
 
-${p.title}
+fullProductText =
+await callAI(prompt);
 
-========================================
-INTRODUCTION
-========================================
 
-Welcome to this practical guide about ${niche}.
+document.getElementById(
+"fullContent"
+).textContent =
+fullProductText;
 
-This product was designed for beginners who want to start in a simple and organized way without unnecessary complexity.
 
-The goal is to move from theory to practical action step by step.
+document.getElementById(
+"fullProduct"
+).style.display =
+"block";
 
-========================================
-CHAPTER 1: Understanding ${niche}
-========================================
 
-Start by understanding the basic concepts of ${niche}.
+autoSave();
 
-Do not try to learn everything at once.
 
-Focus on the fundamentals and then start taking action.
+document
+.getElementById("fullProduct")
+.scrollIntoView(
+{
+behavior:"smooth"
+}
+);
 
-========================================
-CHAPTER 2: Essential Tools
-========================================
 
-Use the free tools available to you.
+toast(
+currentLang==="ar"
+?
+"تم إنشاء المنتج الكامل ✅"
+:
+"Full product generated ✅"
+);
 
-Choose simple tools that help you complete your work faster.
 
-The tool is less important than how you use it.
+}
 
-========================================
-CHAPTER 3: Choose a Clear Goal
-========================================
+catch(error){
 
-Choose one clear goal.
+console.error(error);
 
-For example:
+toast(
+(
+currentLang==="ar"
+?
+"خطأ: "
+:
+"Error: "
+)
++
+error.message
+);
 
-- Learn a skill
-- Create content
-- Launch a product
-- Get your first client
-
-The clearer the goal, the easier the execution.
-
-========================================
-CHAPTER 4: Execution Steps
-========================================
-
-Step 1:
-Define what you want to achieve.
-
-Step 2:
-Break the goal into small tasks.
-
-Step 3:
-Start with the easiest task.
-
-Step 4:
-Repeat the process consistently.
-
-========================================
-CHAPTER 5: Common Mistakes
-========================================
-
-The biggest mistake is waiting until you feel completely ready.
-
-Start with what you have and improve gradually.
-
-Another mistake is changing your plan every day.
-
-Choose a direction and give it enough time.
-
-========================================
-CHAPTER 6: 7-Day Action Plan
-========================================
-
-Day 1:
-Define your goal.
-
-Day 2:
-Learn the basics.
-
-Day 3:
-Create your first version.
-
-Day 4:
-Review the result.
-
-Day 5:
-Improve the product.
-
-Day 6:
-Create promotional content.
-
-Day 7:
-Publish and collect feedback.
-
-========================================
-CHAPTER 7: Marketing
-========================================
-
-Use short-form content.
-
-Create simple videos that provide real value.
-
-You can use:
-
-TikTok
-Instagram Reels
-YouTube Shorts
-
-Focus on the problem your product solves, not just on selling.
-
-========================================
-CHAPTER 8: What's Next
-========================================
-
-Do not stop after creating version one.
-
-Collect feedback.
-
-Improve the product.
-
-Create a better version.
-
-========================================
-BONUS
-========================================
-
-Checklist:
-
-[ ] Choose your niche
-[ ] Define your audience
-[ ] Identify the problem
-[ ] Create the product
-[ ] Review the product
-[ ] Create a sales page
-[ ] Create content
-[ ] Publish
-[ ] Collect feedback
-[ ] Improve the product
-
-========================================
-MARKETING PLAN
-========================================
-
-1. Create 3 short videos every week.
-2. Provide useful free tips.
-3. Show the problem and solution.
-4. Put your product link in your Bio.
-5. Test different hooks.
-6. Track your best videos.
-7. Repeat what works.
-
-========================================
-FINAL THOUGHT
-========================================
-
-Do not wait for perfection.
-
-Start with a simple version of your ${niche} product and improve it over time.
-
-Consistency matters more than a perfect beginning.
-
-`;
-
-    }
-
-    document.getElementById("fullContent").textContent=fullProductText;
-
-    document.getElementById("fullProduct").style.display="block";
-
-    autoSave();
-
-    document.getElementById("fullProduct").scrollIntoView({
-        behavior:"smooth"
-    });
+}
 
 }
 
 
 function copyFullProduct(){
 
-    if(!fullProductText) return;
-
-    copyText(fullProductText);
+if(fullProductText)
+copyText(fullProductText);
 
 }
 
 
 function downloadFullProduct(){
 
-    if(!fullProductText) return;
+if(fullProductText){
 
-    downloadText(
-        "full-digital-product.txt",
-        fullProductText
-    );
+downloadText(
+"full-digital-product.txt",
+fullProductText
+);
+
+}
 
 }
 
 
-/* =========================
-   SAVE PROJECT
-========================= */
-
 function getProjects(){
 
-    try{
+try{
 
-        return JSON.parse(
-            localStorage.getItem(STORAGE_KEY)
-        ) || [];
+return JSON.parse(
+localStorage.getItem(
+STORAGE_KEY
+)
+) || [];
 
-    }catch(e){
+}
 
-        return [];
+catch{
 
-    }
+return [];
+
+}
 
 }
 
 
 function saveProject(){
 
-    if(!selectedProduct){
+if(!selectedProduct){
 
-        if(generatedProducts.length){
+toast(
+currentLang==="ar"
+?
+"أنشئ أو اختر منتجًا أولاً"
+:
+"Create or select a product first"
+);
 
-            createProduct(0,false);
-
-        }else{
-
-            showToast(
-                currentLang==="ar"
-                ? "أنشئ منتجًا أولاً."
-                : "Create a product first."
-            );
-
-            return;
-
-        }
-
-    }
-
-    const niche=document.getElementById("niche").value.trim();
-
-    const type=document.getElementById("type").value;
-
-    const projects=getProjects();
-
-    const project={
-
-        id:Date.now().toString(),
-
-        title:selectedProduct.title,
-
-        niche:niche,
-
-        type:type,
-
-        language:currentLang,
-
-        generatedProducts:generatedProducts,
-
-        selectedProductIndex:selectedProductIndex,
-
-        fullProductText:fullProductText,
-
-        createdAt:new Date().toISOString()
-
-    };
-
-    projects.unshift(project);
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(projects)
-    );
-
-    showToast(
-        currentLang==="ar"
-        ? "تم حفظ المشروع 💾"
-        : "Project saved 💾"
-    );
-
-    showSavedProjects();
+return;
 
 }
 
 
-function autoSave(){
+const projects =
+getProjects();
 
-    clearTimeout(autoSaveTimer);
 
-    autoSaveTimer=setTimeout(()=>{
+projects.unshift({
 
-        const niche=document.getElementById("niche").value.trim();
+id:Date.now(),
 
-        const type=document.getElementById("type").value;
+title:
+selectedProduct.title,
 
-        const data={
+niche:
+document.getElementById(
+"niche"
+).value,
 
-            niche:niche,
+type:
+document.getElementById(
+"type"
+).value,
 
-            type:type,
+language:
+currentLang,
 
-            language:currentLang,
+generatedProducts:
 
-            generatedProducts:generatedProducts,
+generatedProducts,
 
-            selectedProductIndex:selectedProductIndex,
+selectedProductIndex:
 
-            fullProductText:fullProductText
+selectedProductIndex,
 
-        };
+fullProductText:
 
-        localStorage.setItem(
-            AUTOSAVE_KEY,
-            JSON.stringify(data)
-        );
+fullProductText,
 
-    },500);
+createdAt:
+new Date().toISOString()
+
+});
+
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(projects)
+);
+
+
+toast(
+currentLang==="ar"
+?
+"تم حفظ المشروع 💾"
+:
+"Project saved 💾"
+);
+
+
+showSavedProjects();
 
 }
 
-
-function scheduleAutoSave(){
-
-    autoSave();
-
-}
-
-
-/* =========================
-   SAVED PROJECTS
-========================= */
 
 function showSavedProjects(){
 
-    document.getElementById("savedSection").style.display="block";
+document.getElementById(
+"savedSection"
+).style.display =
+"block";
 
-    renderSavedProjects();
 
-    document.getElementById("savedSection").scrollIntoView({
-        behavior:"smooth"
-    });
+renderSavedProjects();
+
+
+document
+.getElementById("savedSection")
+.scrollIntoView(
+{
+behavior:"smooth"
+}
+);
 
 }
 
 
 function closeSavedProjects(){
 
-    document.getElementById("savedSection").style.display="none";
+document.getElementById(
+"savedSection"
+).style.display =
+"none";
 
 }
 
 
 function renderSavedProjects(){
 
-    const list=document.getElementById("savedList");
+const list =
+document.getElementById(
+"savedList"
+);
 
-    const projects=getProjects();
+const projects =
+getProjects();
 
-    if(!projects.length){
 
-        list.innerHTML=`
-            <div class="empty">
-                ${currentLang==="ar"
-                ? "لا توجد مشاريع محفوظة بعد."
-                : "No saved projects yet."}
-            </div>
-        `;
+if(!projects.length){
 
-        return;
+list.innerHTML = `
 
-    }
+<div class="empty">
 
-    list.innerHTML=projects.map(project=>{
+${
+currentLang==="ar"
+?
+"لا توجد مشاريع محفوظة."
+:
+"No saved projects."
+}
 
-        const date=new Date(project.createdAt);
+</div>
 
-        return `
+`;
 
-        <div class="saved-item">
-
-            <div class="saved-info">
-
-                <h3>${escapeHTML(project.title)}</h3>
-
-                <p>
-                    ${currentLang==="ar" ? "المجال:" : "Niche:"}
-                    ${escapeHTML(project.niche)}
-                </p>
-
-                <p>
-                    ${currentLang==="ar" ? "التاريخ:" : "Date:"}
-                    ${date.toLocaleString(
-                        currentLang==="ar" ? "ar-DZ" : "en-US"
-                    )}
-                </p>
-
-            </div>
-
-            <div class="actions">
-
-                <button
-                    class="btn"
-                    onclick="openProject('${project.id}')"
-                >
-                    📂 ${currentLang==="ar" ? "فتح" : "Open"}
-                </button>
-
-                <button
-                    class="btn-danger"
-                    onclick="deleteProject('${project.id}')"
-                >
-                    🗑️ ${currentLang==="ar" ? "حذف" : "Delete"}
-                </button>
-
-            </div>
-
-        </div>
-
-        `;
-
-    }).join("");
+return;
 
 }
 
 
-function openProject(id){
+list.innerHTML =
+projects
+.map(
+(p,i)=>`
 
-    const projects=getProjects();
+<div class="saved-item">
 
-    const project=projects.find(p=>p.id===id);
+<div class="saved-info">
 
-    if(!project) return;
+<h3>
+${esc(p.title)}
+</h3>
 
-    currentLang=project.language || currentLang;
+<p>
 
-    localStorage.setItem(
-        LANG_KEY,
-        currentLang
-    );
+${esc(p.niche)}
+•
+${new Date(
+p.createdAt
+).toLocaleString()}
 
-    applyLanguage();
+</p>
 
-    document.getElementById("niche").value=
-        project.niche || "";
+</div>
 
-    document.getElementById("type").value=
-        project.type || "ebook";
 
-    generatedProducts=
-        project.generatedProducts || [];
+<div class="actions">
 
-    selectedProductIndex=
-        project.selectedProductIndex ?? -1;
+<button
+class="btn"
+onclick="openProject(${i})">
 
-    fullProductText=
-        project.fullProductText || "";
+Open
 
-    renderProducts();
+</button>
 
-    if(
-        selectedProductIndex>=0 &&
-        selectedProductIndex<generatedProducts.length
-    ){
 
-        createProduct(
-            selectedProductIndex,
-            false
-        );
+<button
+class="btn-danger"
+onclick="deleteProject(${i})">
 
-    }
+Delete
 
-    if(fullProductText){
+</button>
 
-        document.getElementById("fullContent").textContent=
-            fullProductText;
+</div>
 
-        document.getElementById("fullProduct").style.display=
-            "block";
+</div>
 
-    }
-
-    closeSavedProjects();
-
-    showToast(
-        currentLang==="ar"
-        ? "تم فتح المشروع 📂"
-        : "Project opened 📂"
-    );
+`
+)
+.join("");
 
 }
 
 
-function deleteProject(id){
+function openProject(i){
 
-    const confirmText=
-        currentLang==="ar"
-        ? "هل تريد حذف هذا المشروع؟"
-        : "Delete this project?";
+const p =
+getProjects()[i];
 
-    if(!confirm(confirmText)) return;
 
-    const projects=getProjects().filter(
-        project=>project.id!==id
-    );
+document.getElementById(
+"niche"
+).value =
+p.niche;
 
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(projects)
-    );
 
-    renderSavedProjects();
+document.getElementById(
+"type"
+).value =
+p.type;
 
-    showToast(
-        currentLang==="ar"
-        ? "تم حذف المشروع 🗑️"
-        : "Project deleted 🗑️"
-    );
+
+currentLang =
+p.language ||
+currentLang;
+
+
+generatedProducts =
+p.generatedProducts ||
+[];
+
+
+selectedProductIndex =
+p.selectedProductIndex ?? -1;
+
+
+selectedProduct =
+generatedProducts[
+selectedProductIndex
+] || null;
+
+
+fullProductText =
+p.fullProductText || "";
+
+
+applyLanguage();
+
+renderProducts();
+
+
+if(selectedProduct)
+createProduct(
+selectedProductIndex,
+false
+);
+
+
+if(fullProductText){
+
+document.getElementById(
+"fullContent"
+).textContent =
+fullProductText;
+
+
+document.getElementById(
+"fullProduct"
+).style.display =
+"block";
 
 }
 
 
-/* =========================
-   RESTORE AUTOSAVE
-========================= */
+toast("Opened");
+
+}
+
+
+function deleteProject(i){
+
+const projects =
+getProjects();
+
+
+projects.splice(i,1);
+
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(projects)
+);
+
+
+renderSavedProjects();
+
+}
+
+
+function autoSave(){
+
+clearTimeout(autoTimer);
+
+
+autoTimer =
+setTimeout(()=>{
+
+localStorage.setItem(
+
+AUTOSAVE_KEY,
+
+JSON.stringify({
+
+niche:
+document.getElementById(
+"niche"
+).value,
+
+type:
+document.getElementById(
+"type"
+).value,
+
+language:
+currentLang,
+
+generatedProducts:
+generatedProducts,
+
+selectedProductIndex:
+selectedProductIndex,
+
+fullProductText:
+fullProductText
+
+})
+
+);
+
+},500);
+
+}
+
 
 function restoreAutoSave(){
 
-    try{
+try{
 
-        const raw=localStorage.getItem(AUTOSAVE_KEY);
+const d =
+JSON.parse(
+localStorage.getItem(
+AUTOSAVE_KEY
+)
+);
 
-        if(!raw) return;
 
-        const data=JSON.parse(raw);
+if(!d)
+return;
 
-        if(!data) return;
 
-        currentLang=data.language || currentLang;
+document.getElementById(
+"niche"
+).value =
+d.niche || "";
 
-        document.getElementById("niche").value=
-            data.niche || "";
 
-        document.getElementById("type").value=
-            data.type || "ebook";
+document.getElementById(
+"type"
+).value =
+d.type || "ebook";
 
-        generatedProducts=
-            data.generatedProducts || [];
 
-        selectedProductIndex=
-            data.selectedProductIndex ?? -1;
+currentLang =
+d.language ||
+currentLang;
 
-        fullProductText=
-            data.fullProductText || "";
 
-        applyLanguage();
+generatedProducts =
+d.generatedProducts ||
+[];
 
-        renderProducts();
 
-        if(
-            selectedProductIndex>=0 &&
-            selectedProductIndex<generatedProducts.length
-        ){
+selectedProductIndex =
+d.selectedProductIndex ??
+-1;
 
-            createProduct(
-                selectedProductIndex,
-                false
-            );
 
-        }
+selectedProduct =
+generatedProducts[
+selectedProductIndex
+] || null;
 
-        if(fullProductText){
 
-            document.getElementById("fullContent").textContent=
-                fullProductText;
+fullProductText =
+d.fullProductText ||
+"";
 
-            document.getElementById("fullProduct").style.display=
-                "block";
 
-        }
+applyLanguage();
 
-    }catch(e){
 
-        console.log("Autosave restore failed.");
+if(generatedProducts.length)
+renderProducts();
 
-    }
+
+if(selectedProduct)
+createProduct(
+selectedProductIndex,
+false
+);
+
+
+if(fullProductText){
+
+document.getElementById(
+"fullContent"
+).textContent =
+fullProductText;
+
+
+document.getElementById(
+"fullProduct"
+).style.display =
+"block";
+
+}
+
+}
+
+catch(e){}
 
 }
 
 
-/* =========================
-   INIT
-========================= */
+applyLanguage();
 
-document.addEventListener("DOMContentLoaded",()=>{
-
-    applyLanguage();
-
-    restoreAutoSave();
-
-});
+restoreAutoSave();
 
 </script>
 
