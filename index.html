@@ -620,7 +620,7 @@ class="saved-list">
 AI Digital Product Builder
 •
 <span data-i18n="footer">
-Powered by AI
+يعمل بواسطة الذكاء الاصطناعي
 </span>
 🤖
 
@@ -916,28 +916,32 @@ renderProducts();
    AI REQUEST
 ========================= */
 
-async function callAI(prompt, timeout = 60000) {
+async function callAI(prompt, timeout = 60000){
 
-    const controller = new AbortController();
+const controller =
+new AbortController();
 
-    const timer = setTimeout(
-        () => controller.abort(),
-        timeout
-    );
+const timer =
+setTimeout(
+()=>controller.abort(),
+timeout
+);
 
-    try {
+try{
 
-        const response = await fetch(
-            WORKER_URL,
-            {
-                method: "POST",
+const response =
+await fetch(
+WORKER_URL,
+{
+method:"POST",
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+headers:{
+"Content-Type":
+"application/json"
+},
 
-                body: JSON.stringify({
-                    prompt: `
+body:JSON.stringify({
+prompt:`
 You are an expert digital-product strategist and practical AI assistant.
 
 Give answers that are:
@@ -971,61 +975,17 @@ End important recommendations with a short practical motivation such as:
 
 USER REQUEST:
 ${prompt}
-                    `
-                }),
+`
+}),
 
-                signal: controller.signal
-            }
-        );
+signal:controller.signal
 
-        clearTimeout(timer);
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(
-                data.error || "AI request failed"
-            );
-        }
-
-        if (!data.result) {
-            throw new Error(
-                "The AI returned an empty response."
-            );
-        }
-
-        return data.result;
-
-    } catch (error) {
-
-        clearTimeout(timer);
-
-        if (error.name === "AbortError") {
-            throw new Error(
-                "The AI response took too long. Please try again."
-            );
-        }
-
-        throw error;
-    }
 }
 );
 
 
-let data;
-
-try{
-
-data =
+const data =
 await response.json();
-
-}catch{
-
-throw new Error(
-"Invalid server response"
-);
-
-}
 
 
 if(
@@ -1041,15 +1001,25 @@ data.error ||
 }
 
 
-return String(
-data.result || ""
-).trim();
+if(!data.result){
+
+throw new Error(
+"The AI returned an empty response."
+);
 
 }
 
-catch(error){
 
-if(error.name === "AbortError"){
+return String(
+data.result
+).trim();
+
+
+}catch(error){
+
+if(
+error.name === "AbortError"
+){
 
 throw new Error(
 currentLang === "ar"
@@ -1063,9 +1033,7 @@ currentLang === "ar"
 
 throw error;
 
-}
-
-finally{
+}finally{
 
 clearTimeout(timer);
 
@@ -1178,11 +1146,6 @@ currentLang === "ar"
 );
 
 
-/*
-Important:
-Short prompt = faster response.
-*/
-
 const prompt = `
 
 Generate exactly 5 digital product ideas.
@@ -1191,7 +1154,13 @@ Niche: ${niche}
 
 Product type: ${type}
 
-Language: ${currentLang === "ar" ? "Arabic" : "English"}
+Language: ${
+currentLang === "ar"
+?
+"Arabic"
+:
+"English"
+}
 
 Return ONLY a JSON array.
 
@@ -1207,7 +1176,9 @@ marketing
 copy
 
 Keep every field SHORT.
+
 Use practical beginner-friendly ideas.
+
 Make all 5 ideas different.
 
 No markdown.
@@ -1219,7 +1190,10 @@ No explanation.
 try{
 
 const text =
-await callAI(prompt,45000);
+await callAI(
+prompt,
+45000
+);
 
 const parsed =
 JSON.parse(
@@ -1243,12 +1217,22 @@ generatedProducts =
 parsed.map(item=>({
 
 title:item.title || "",
-description:item.description || "",
+
+description:
+item.description || "",
+
 goal:item.goal || "",
-structure:item.structure || "",
+
+structure:
+item.structure || "",
+
 bonus:item.bonus || "",
+
 price:item.price || "",
-marketing:item.marketing || "",
+
+marketing:
+item.marketing || "",
+
 copy:item.copy || ""
 
 }));
@@ -1300,14 +1284,16 @@ console.error(error);
 showToast(
 currentLang === "ar"
 ?
-"تعذر إنشاء الأفكار: "+error.message
+"تعذر إنشاء الأفكار: "
++
+error.message
 :
-"Could not generate ideas: "+error.message
+"Could not generate ideas: "
++
+error.message
 );
 
-}
-
-finally{
+}finally{
 
 isGenerating = false;
 
@@ -1384,7 +1370,8 @@ generatedProducts
 <div class="product-card">
 
 <h3>
-${index+1}. ${escapeHTML(product.title)}
+${index+1}.
+${escapeHTML(product.title)}
 </h3>
 
 <p>
@@ -1653,18 +1640,18 @@ document
 .trim();
 
 
-/*
-Shorter and cleaner prompt.
-The AI still creates a useful complete product,
-but avoids unnecessary output.
-*/
-
 const prompt = `
 
 Create a complete beginner-friendly digital product.
 
 Language:
-${currentLang === "ar" ? "Arabic" : "English"}
+${
+currentLang === "ar"
+?
+"Arabic"
+:
+"English"
+}
 
 Niche:
 ${niche}
@@ -1704,7 +1691,9 @@ Create:
 Make it clear, practical and ready to edit into an ebook.
 
 Avoid repetition.
+
 Do not add unnecessary explanations.
+
 Return plain text only.
 
 `;
@@ -1757,21 +1746,24 @@ console.error(error);
 showToast(
 currentLang === "ar"
 ?
-"تعذر إنشاء المنتج: "+error.message
+"تعذر إنشاء المنتج: "
++
+error.message
 :
-"Could not build product: "+error.message
+"Could not build product: "
++
+error.message
 );
 
-}
-
-finally{
+}finally{
 
 isGenerating = false;
 
 setLoading(
 button,
 false,
-"✨ "+(
+"✨ "+
+(
 currentLang === "ar"
 ?
 "إنشاء المنتج الكامل"
@@ -1852,35 +1844,22 @@ currentLang === "ar"
 }
 
 
-function downloadText(filename, text) {
-    const utf8Text = "\uFEFF" + text;
+function downloadText(filename,text){
 
-    const blob = new Blob(
-        [utf8Text],
-        {
-            type: "text/plain;charset=utf-8"
-        }
-    );
+const utf8Text =
+"\uFEFF" + text;
 
-    const url = URL.createObjectURL(blob);
-
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = filename;
-
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-
-    setTimeout(() => {
-        URL.revokeObjectURL(url);
-    }, 1000);
+const blob =
+new Blob(
+[utf8Text],
+{
+type:
+"text/plain;charset=utf-8"
 }
-
+);
 
 const url =
 URL.createObjectURL(blob);
-
 
 const link =
 document.createElement("a");
@@ -1895,9 +1874,10 @@ link.click();
 
 link.remove();
 
-
 setTimeout(
-()=>URL.revokeObjectURL(url),
+()=>{
+URL.revokeObjectURL(url);
+},
 1000
 );
 
@@ -2110,13 +2090,13 @@ ${escapeHTML(project.niche)}
 <button
 class="btn"
 onclick="openProject(${index})">
-Open
+${currentLang === "ar" ? "فتح" : "Open"}
 </button>
 
 <button
 class="btn-danger"
 onclick="deleteProject(${index})">
-Delete
+${currentLang === "ar" ? "حذف" : "Delete"}
 </button>
 
 </div>
