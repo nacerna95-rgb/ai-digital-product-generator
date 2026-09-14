@@ -920,14 +920,51 @@ renderProducts();
 }
 
 function upgradeToPro() {
-  alert(
-    "💎 PRO\n\n" +
-    "✓ Create full digital products\n" +
-    "✓ More AI generations\n" +
-    "✓ Download your products\n" +
-    "✓ Advanced marketing content\n\n" +
-    "Price: $9.99"
-  );
+  const oldModal = document.getElementById("proModal");
+  if (oldModal) oldModal.remove();
+
+  const modal = document.createElement("div");
+  modal.id = "proModal";
+
+  modal.innerHTML = `
+    <div class="pro-overlay" onclick="closeProModal(event)">
+      <div class="pro-card" onclick="event.stopPropagation()">
+
+        <button class="pro-close" onclick="closeProModal()">×</button>
+
+        <div class="pro-icon">💎</div>
+
+        <h2>PRO</h2>
+
+        <p class="pro-price">$9.99</p>
+
+        <div class="pro-features">
+          <p>✓ Create full digital products</p>
+          <p>✓ More AI generations</p>
+          <p>✓ Download your products</p>
+          <p>✓ Advanced marketing content</p>
+        </div>
+
+        <button class="pro-upgrade-btn" onclick="startProPayment()">
+          Upgrade Now 🚀
+        </button>
+
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+}
+
+function closeProModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+
+  const modal = document.getElementById("proModal");
+  if (modal) modal.remove();
+}
+
+function startProPayment() {
+  alert("Payment system coming soon.");
 }
 /* =========================
    AI REQUEST
