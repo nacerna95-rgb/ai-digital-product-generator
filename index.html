@@ -662,6 +662,8 @@ const LANG_KEY =
 let currentLang =
 localStorage.getItem(LANG_KEY) || "ar";
 
+let userPlan = localStorage.getItem("userPlan") || "free";
+
 let generatedProducts = [];
 
 let selectedProductIndex = -1;
