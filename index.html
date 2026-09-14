@@ -294,6 +294,96 @@ padding-top:25px;
 
 }
 
+   .pro-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 9999;
+}
+
+.pro-card {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  background: linear-gradient(145deg, #1c1533, #0f0b1c);
+  color: white;
+  border: 1px solid rgba(124, 92, 255, 0.5);
+  border-radius: 24px;
+  padding: 30px 24px;
+  text-align: center;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+  animation: proAppear 0.25s ease;
+}
+
+.pro-icon {
+  font-size: 50px;
+  margin-bottom: 5px;
+}
+
+.pro-card h2 {
+  font-size: 30px;
+  margin: 5px 0;
+}
+
+.pro-price {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 12px 0 22px;
+}
+
+.pro-features {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.pro-features p {
+  margin: 12px 0;
+  font-size: 15px;
+}
+
+.pro-upgrade-btn {
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  background: #7c5cff;
+  color: white;
+}
+
+.pro-upgrade-btn:hover {
+  opacity: 0.9;
+}
+
+.pro-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer; 
+}
+
+@keyframes proAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 </style>
 </head>
 
